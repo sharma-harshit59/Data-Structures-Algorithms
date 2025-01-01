@@ -31,7 +31,7 @@ function sumN2(N) {
     return sum;
 }
 
-let N = 5;
+let N = 5; // Change the number as per your wish
 const sum0 = sumN0(N);
 const sum1 = sumN1(N);
 const sum2 = sumN2(N);
