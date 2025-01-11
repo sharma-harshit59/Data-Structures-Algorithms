@@ -1,0 +1,59 @@
+The solution for this problem can be devised using the below 6 intuitions -
+
+1)  If the length of the string 's' is less than 'k', then it is not possible to break the string into 'k' palindromes. Hence, this case will always yield 'false'.
+
+2)  If the length of the string 's' is equal to 'k', then it can always be broken down into 'k' palindromes containing only 1 character. Hence, this case will always yield 'true'.
+
+Note: The below cases only discuss the case when the length of the string 's' is greater than the number 'k'.
+
+3)  Let the frequency of a character which occurs even number of times in the string 's' be N.
+    A character occuring even number of times in a string can be used to form 1 to N number of palindromic strings.
+    Example-1:
+        Let the string s = 'Tennesee', then character 'e' occurs 4 times. We can write 1 to 4 palindromic strings using the 4 occurences of character 'e'.
+        Case-1: 'eeee'
+        Case-2: 'eee' + 'e'
+                'ee' + 'ee'
+        Case-3: 'ee' + 'e' + 'e'
+        Case-4: 'e' + 'e' + 'e' + 'e'
+    Example-2:
+        Let the string s = 'Successes', then character 's' occurs 6 times. We can write 1 to 6 palindromic strings using the 6 occurences of the character 's'.
+        Case-1: 'ssssss'
+        Case-2: 'sssss' + 's'
+                'ssss' + 'ss', 'sss' + 'sss'
+        Case-3: 'ssss' + 's' + 's'
+                'sss' + 'ss' + 's'
+                'ss' + 'ss' + 'ss'
+        Case-4: 'sss' + 's' + 's' + 's'
+                'ss' + 'ss' + 's' + 's'
+        Case-5: 'ss' + 's' + 's' + 's' + 's'
+        Case-6: 's' + 's' + 's' + 's' + 's' + 's'
+    
+4)  If we have a palindromic string, the character which occurs even number of times can be added in the palindromic string to create another palindromic string by appending half the occurences at the start and the other half occurences at the end of the string.
+    Example:
+        'racecar' is a palindromic string. if we have 6 occurences of 's', then we can create a new palindromic string 'sssracecarsss'.
+
+5)  Let the number of characters that occur odd number of times be M. It can still be broken down into 1 to M palindromic strings.
+    Example-1:
+        Let the string s = 'Possesses'. It has 5 occurences of 's' which can be broken down as below.
+        Case-1: 'sssss'
+        Case-2: 'ssss' + 's'
+                'sss' + 'ss'
+        Case-3: 'sss' + 's' + 's'
+                'ss' + 'ss' + 's'
+        Case-4: 'ss' + 's' + 's' + 's'
+        Case-5: 's' + 's' + 's' + 's' + 's'
+    
+    Example-2:
+        Let the string s = 'Banana'. It has 3 occurences of the character 'a'
+        Case-1: 'aaa'
+        Case-2: 'aa' + 'a'
+        Case-3: 'a' + 'a' + 'a'
+
+6)  Let the number of characters that occur odd number of times be M, and the required number of palindromic strings be 'k'.
+    a)  If M is more than the number 'k': (M > k), it always yields 'false'.
+            This is because even if each character occuring odd number of times is grouped together to form palicdromic strings, the count of these strings will exceed 'k'.
+    b)  If M is equal to the number 'k': (M == k), it always yields 'true'.
+            This is because, we can group together each character occuring odd number of times into a single palindromic string. Hence, the count can never exceed 'k'.
+            If there are characters that occur even number of times, they can be adjusted in other palindromic strings as per Point-4.
+    c)  If M is less than the number 'k': (M < k), it always yields 'true'.
+            As per Points 3, 4 and 5, it can always yield 'k' palindromic strings.
