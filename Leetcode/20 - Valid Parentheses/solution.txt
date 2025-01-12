@@ -1,0 +1,17 @@
+The solution for this problem can be devised using the below 2 intuitions -
+
+1) A bracket-pair is considered to be closed properly, iff, the closing bracket is preceded by a corresponding opening bracket of the same type. Given, it does not contain any other bracket in between them.
+
+2) If any bracket-pair has other brackets in between them, then for it to be closed properly all the in-between bracket pairs must follow Point 1.
+
+SOLUTION:
+
+If the length of the Parantheses' string is odd, it will always be false, because a properly closed bracket-pair will always occur in pair. Thus, any odd-sized length implies that atleast 1 bracket-pair hasn't been completed.
+
+If the length of the Parantheses' string is even, we need to check the conditions as mentioned in Points 1 and 2.
+We can maintain a stack of brackets encountered in the string. The FIFO-structure of a Stack will help facilitate the process.
+a)  If we encounter any opening bracket, we simply push the bracket in the stack.
+b)  If we encounter any closing bracket, we need to check if the top-most character in the stack at that moment is the corresponding closing bracket.
+    If the top-most character corresponds is the required opening bracket, the bracket-pair is completed and we can pop it to continue the search.
+    If the top-most character does not correspond to the required opening bracket, the bracket-pair does not get completed and violates Point 1. Due to which Point 2 will never be achieved, if any brackets remain. Hence, it will yield 'false'.
+Once all the characters have been traversed, we also check if the stack is empty, because all the opening brackets need to be closed as well. Base on that, we return 'true' or 'false'.

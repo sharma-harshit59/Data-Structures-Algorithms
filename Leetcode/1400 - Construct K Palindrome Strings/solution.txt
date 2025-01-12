@@ -57,3 +57,17 @@ Note: The below cases only discuss the case when the length of the string 's' is
             If there are characters that occur even number of times, they can be adjusted in other palindromic strings as per Point-4.
     c)  If M is less than the number 'k': (M < k), it always yields 'true'.
             As per Points 3, 4 and 5, it can always yield 'k' palindromic strings.
+
+SOLUTION:
+
+Based on the intuitions mentioned in above points, we need to cater only 3 cases as follows:
+1) If the length of string 's' is greater than 'k'
+2) If the length of string 's' is equal to 'k
+3) If the length of string 's' is less than 'k'
+
+As per the above intuitions in Points 1 & 2, cases 2 and 3 will always yield 'true' and 'false' respectively.
+
+For Case 1
+We just need to count the number of characters which occur odd number of times in the string. Let this count be N.
+If N > k, the result will always be 'false' as per Point 6a.
+If N <= k, the result will always be 'true' as per Points 6b and 6c.
