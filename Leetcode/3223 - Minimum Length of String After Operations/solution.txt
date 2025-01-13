@@ -1,0 +1,16 @@
+The solution for this problem can be devised using the below 2 intuitions -
+
+1)  The description of the problem states that there should be atleast 1 character to the left and 1 character to the right of the index 'i', such that they are equal to 's[i]'. This implies that there must be atleast 3 occurences of the character in the string for any operation to be performed.
+
+2)  If there are more than 3 occurrences of a character, the most central character can be assumed as a pivot index to remove all its other occurences because the middle element will ensure that there are atleast 1 occurence to the left as well as right.
+
+SOLUTION:
+
+We need to count the total occurences of each character in the string. We also need to store the original length of the string.
+Once we have the frequency of each character in the string, we need to check if the frequency is atleast 3 or more.
+If the frequency is Odd, we leave 1 occurence of the character as the single occurence in the middle would be enough to delete all other occurences.
+If the frequency is Even, we leave 2 occurences, because if we pick any of the middle occurence as the pivot index to delete other occurences we would arrive at the case where the 2 middle occurences will remain and as discussed per Point 1 in the intuition, we need atleast 3 occurences of the character to perform any operation.
+
+Note: Use the formula [Math.floor((count - 1) / 2) * 2] to count the characters deleted.
+
+Using the above formula we get the number of characters that are deleted from the string. We can subtract these many occurences from the length of the string to get the maximu length possible.
