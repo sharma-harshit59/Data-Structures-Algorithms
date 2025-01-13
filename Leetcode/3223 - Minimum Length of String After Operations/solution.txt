@@ -3,6 +3,18 @@ The solution for this problem can be devised using the below 2 intuitions -
 1)  The description of the problem states that there should be atleast 1 character to the left and 1 character to the right of the index 'i', such that they are equal to 's[i]'. This implies that there must be atleast 3 occurences of the character in the string for any operation to be performed.
 
 2)  If there are more than 3 occurrences of a character, the most central character can be assumed as a pivot index to remove all its other occurences because the middle element will ensure that there are atleast 1 occurence to the left as well as right.
+    Example:
+        Let the string s = 'abcbacabcbacabcbaca'. If we choose the pivot index as 10 for character 'a' (7 occurences, so 4th occurence is middle), the string reduces in the below manner -
+        s = 'abcbacabcbacabcbaca'
+            'bcbacabcbacabcbac'
+            'bcbcabcbacabcbc'
+            'bcbcbcbacbcbc',
+        to retain only 1 occurence of the character 'a'.
+        Similarly, for character 'b', there are 6 occurences, so if choose index 7 as the pivot index for character 'b', (You can also choose index 9, as there even occurences), the string reduces in the below manner -
+        s = 'abcbacabcbacabcbaca'
+            'acbacabcbacabcaca'
+            'acacabcbacacaca',
+        to retain only 2 occurences of the character 'b'.
 
 SOLUTION:
 
@@ -14,3 +26,6 @@ If the frequency is Even, we leave 2 occurences, because if we pick any of the m
 Note: Use the formula [Math.floor((count - 1) / 2) * 2] to count the characters deleted.
 
 Using the above formula we get the number of characters that are deleted from the string. We can subtract these many occurences from the length of the string to get the maximu length possible.
+
+Note: There also exists an approach where we intialize the maximum length as 0 and add the occurences left of each character in the string.
+      maxLength += ((count < 3) ? count : ((count % 2) ? 1 : 2));
