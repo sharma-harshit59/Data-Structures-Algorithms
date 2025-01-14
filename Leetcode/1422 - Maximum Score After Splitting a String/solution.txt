@@ -1,0 +1,13 @@
+The solution for this problem can be devised using the below 2 intuitions:
+
+1)  As both the strings have to be non-empty, any occurence of 1 in left sub-string, or any occurence of 0 in right sub-string cannot be counted.
+    Hence, we only need to consider the array from index 0 to n-2 for left subp-string and from index 1 to n-1 for right sub-string.
+
+2)  For different split points, the score of the string will be different. Our desired result is the maximum value possible for this score.
+
+SOLUTION:
+
+Count the total number of Ones in the array. If the number on index 0 is '1',, then deduct 1 from the count as per Pont 1. The count is the score 'R' for the right sub-string.
+Intialize the score of Left and Right sub-strings by 'R' and '0' respectively. Also, we intialize the String score by 'R' which represents the state where the left-sub-string is empty and right-sub-string is the string itself.
+Iterate from 0 to n-2, where index refers the character after which the split occurs.
+If the number at index i is 0, increase the Left-score by 1, else decrease the Right-score by 1. Check if the sum of Left-score and Right-score is greater than the Maximum of the String Score, if so, replace the latter with the former.
