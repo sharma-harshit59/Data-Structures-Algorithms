@@ -1,0 +1,9 @@
+SOLUTION:
+
+We need to keep track of which numbers have appeared in how many arrays. To achieve this, we can use an object 'M' as a mapping, where each key represents a number encountered in either of the arrays, and its corresponding value represents the number of arrays (1 or 2) in which the number has appeared up to the current index 'i'.
+Additionally, we need a counter 'S' to keep track of the total count of numbers that have been encountered in both arrays.
+
+Traverse through length of the arrays. For each number encountered, update the mapping object 'M' by incrementing/initializing its count by 1.
+If the number encountered in both arrays is same, increment the counter 'S' by 1.
+If the numbers encountered in 'A' and 'B' differ, check the counts of each number in 'M'. If the count for any number reaches 2, increment 'S' accordingly for that number by 1, indicating that the number has been encountered in both arrays now.
+At the end of each iteration, insert the value of the counter 'S' in the result array.

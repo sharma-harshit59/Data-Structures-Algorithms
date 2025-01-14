@@ -1,16 +1,17 @@
 var findThePrefixCommonArray = function(A, B) {
-    let result = [], countCommon = [];
-    for (let i = 0; i <= A.length; i++) {
-        countCommon.push(0);
-    }
+    let result = [], numCountMap = {}, commonNumCount = 0;
     for (let i = 0; i < A.length; i++) {
-        countCommon[A[i]]++;
-        countCommon[B[i]]++;
-        let count = 0;
-        for (let j = 0; j < countCommon.length; j++) {
-            count += (countCommon[j] == 2);
+        numCountMap[A[i]] ??= 0; // Assigns a value if null/undefined
+        numCountMap[A[i]]++;
+        numCountMap[B[i]] ??= 0; // Assigns a value if null/undefined
+        numCountMap[B[i]]++;
+        if (A[i] == B[i]) {
+            commonNumCount++;
+        } else {
+            commonNumCount += (numCountMap[A[i]] == 2);
+            commonNumCount += (numCountMap[B[i]] == 2);
         }
-        result.push(count);
+        result.push(commonNumCount);
     }
     return result;
 };
