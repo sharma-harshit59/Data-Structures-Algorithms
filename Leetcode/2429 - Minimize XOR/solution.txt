@@ -1,0 +1,26 @@
+The solution for this problem can be devised using the below 4 intuitions:
+
+1)  Bitwise XOR Operation refers to an operation where if it encounters identical bits, it returns 0, else returns 1.
+    Example:
+        Let num1 = "1110101", num2 = "1010111101"
+        num1 ⊕ num2 = "1110101" ⊕ "1010111101" = "1011001000"
+
+2)  The value of 'X' for which 'X' XOR 'num1' is minimal will always be the 'num1' itself. As the bit structure of both numbers will be the same, Bitwise XOR will result in all bits becoming 0.
+
+3)  If we want to add more Set Bits in the number 'X', while keeping 'X' XOR 'num1' minimal, we need to set the right-side/lower-order bits in 'num1'.
+    This is because the newly set bits will always result in 1 during XOR, so the lower-order bits will correspond to lower numbers in the result.
+    
+4)  If we want to delete Set Bits in the number 'X', while keeping 'X' XOR 'num1' minimal, we need to unset the left-side/higher-order bits in 'num1'.
+    This is because the newly set bits will always result in 1 during XOR, so the higher-order bits will correspond to higher numbers in the result.
+
+SOLUTION:
+
+We convert the numbers 'num1' and 'num2' into Binary Strings 'num1Bits' and 'num2Bits' respectively, which represent the Bit structure of the numbers.
+We need to count the number of Set Bits of each number using these Binary Strings. Let the count be 'num1SetBits' and 'num2SetBits' respectively.
+Note: Before we perform any operation on 'num1', we need to balance the length of 'num1Bits' and 'num2Bits'. So, if the length of 'num1Bits' is less than the length of 'num2Bits', we add additonal '0' in front of 'num1Bits' to balance it.
+If the difference of Set Bits is more than 0, we check the below:
+a)  If 'num1SetBits' is greater than 'num2SetBits':
+    We unset the higher-order Set Bits until 'num1SetBits' is equal to 'num2SetBits'. (As per Point 4)
+b)  If 'num1SetBits' is lower than 'num2SetBits':
+    We set the lower-order Set Bits until 'num1SetBits' is equal to 'num2SetBits'. (As per Point 3)
+At the end, we just need to convert 'num1Bits' to the Numerical Representation.

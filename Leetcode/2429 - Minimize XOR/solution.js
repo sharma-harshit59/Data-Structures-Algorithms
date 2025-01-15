@@ -1,5 +1,5 @@
 var minimizeXor = function(num1, num2) {
-    let num1SetBits = 0, num2SetBits = 0, x;
+    let num1SetBits = 0, num2SetBits = 0;
     let num1Bits = num1.toString(2).split('');
     let num2Bits = num2.toString(2).split('');
 
