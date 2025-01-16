@@ -1,0 +1,31 @@
+The solution for this problem can be devised using the below 3 intuitions:
+
+1)  Bitwise XOR Operation refers to an operation where if it encounters identical bits, it returns 0, else returns 1.
+    Example:
+        Let num1 = "1110101", num2 = "1010111101"
+        num1 ⊕ num2 = "1110101" ⊕ "1010111101" = "1011001000"
+
+2)  The Bitwise XOR operation is Commutative and Associative in nature. This means that grouping of Bitwise Operations and order of Bitwise operations do not matter.
+    Hence, (A ⊕ B) ⊕ (C ⊕ D) = (D ⊕ C) ⊕ (B ⊕ A) = (A ⊕ C) ⊕ (B ⊕ D) = (D ⊕ A) ⊕ (C ⊕ B) = A ⊕ B ⊕ C ⊕ D
+
+3)  The Bitwise XOR of a number A with itself odd number of times results in the number itself. This is becuase each pair of A ⊕ A will become 0 (due to identical Bit pattern), leaving one occurence of A.
+    Example-1:
+        Let A = 21 = "10101".
+        A ⊕ A ⊕ A = "10101" ⊕ "10101" ⊕ "10101" = "00000" ⊕ "10101" = "10101" = A
+    Example-2:
+        Let A = 83 = "1011011".
+        A ⊕ A ⊕ A ⊕ A ⊕ A = 0 ⊕ 0 ⊕ A = A
+
+4)  Let nums1 = [A1, A2, ... , An] and nums2 = [B1, B2, ... , Bm].
+    Then, nums3 = [(A1 ⊕ B1), (A1 ⊕ B2), ... , (A1 ⊕ Bm), (A2 ⊕ B1), (A2 ⊕ B2), ... , (A2 ⊕ Bm), ..., (An ⊕ B1), (An ⊕ B2), ... , (An ⊕ Bm)]
+    Thus, the result X = (A1 ⊕ B1) ⊕ (A1 ⊕ B2) ... (A1 ⊕ Bm) ⊕ (A2 ⊕ B1) ⊕ (A2 ⊕ B2) ... (A2 ⊕ Bm) ... (An ⊕ B1) ⊕ (An ⊕ B2) ... (An ⊕ Bm)
+    Using Point 2, we get X = (A1 ⊕ A1 ...m times) ⊕ (A2 ⊕ A2 ... m times) ⊕ (An ⊕ An ... m times) ⊕ (B1 ⊕ B1 ...n times) ⊕ (B2 ⊕ B2 ... n times) ⊕ (Bm ⊕ Bm ... n times)
+
+SOLUTION:
+
+From Point 4, the XOR of all elements depends only on the elements of nums1 and nums2 and their respective lengths, n and m.
+If both n and m are even, the result is 0.
+If either n or m is odd, we calculate the XOR of the elements in the opposite array.
+Thus, we initialize X = 0 (if the lengths m and n are even).
+We check if m (length of nums2) is odd, then we calculate X as X = X ^ A1 ^ A2 ... An.
+Similarly, if n is odd (length of nums1), we calculate X as X = X ^ B1 ^ B2 ... Bm.
