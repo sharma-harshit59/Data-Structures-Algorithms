@@ -1,0 +1,6 @@
+SOLUTION:
+
+The Bitwise XOR does not depend on the set/unset nature of the Bits. It depends only on the identical nature of bits, i.e., if the bits are identical, it yields 0, else yields 1.
+Set intialBit = 0 and lastBit = 0. (You can use 1 as well, as the Bitwise XOR does not depend on the set/unset nature of bits)
+Traverse through the derived array. Set lastBit = lastBit ^ derivedBit.
+If the lastBit is equal to initialBit, an Original Array exists, else not.
