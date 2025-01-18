@@ -1,6 +1,17 @@
+The solution to this problem can be devised from the below intuition:
+
+1)  As we traverse through the 'derived' array, if the derived bit derived[i] is 1, this implies that the corresponding bits original[i] and original[i+1] are different (or, identical).
+    Similarly, if the derived bit derived[i] is 0, this implies that the corresponding bits original[i] and original[i+1] are same (or, identical).
+    Therefore, let us suppose that the first bit original[0] is 0, then by using the logic that
+        IF derived[i] = 1 AND original[i] = 0, THEN original[i+1] = 1
+        IF derived[i] = 1 AND original[i] = 1, THEN original[i+1] = 0
+        IF derived[i] = 0 AND original[i] = 0, THEN original[i+1] = 0
+        IF derived[i] = 0 AND original[i] = 1, THEN original[i+1] = 1
+    This can also be shortened as original[i+1] = original[i] ⊕ derived[i]
+
 SOLUTION:
 
 The Bitwise XOR does not depend on the set/unset nature of the Bits. It depends only on the identical nature of bits, i.e., if the bits are identical, it yields 0, else yields 1.
 Set intialBit = 0 and lastBit = 0. (You can use 1 as well, as the Bitwise XOR does not depend on the set/unset nature of bits)
-Traverse through the derived array. Set lastBit = lastBit ^ derivedBit.
+Traverse through the derived array. Set lastBit = lastBit ⊕ derivedBit.
 If the lastBit is equal to initialBit, an Original Array exists, else not.
