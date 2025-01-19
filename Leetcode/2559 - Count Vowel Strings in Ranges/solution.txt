@@ -1,0 +1,25 @@
+The solution for this problem can be devised using the below intuition:
+
+1)  A simple solution exists where we can iterate over the 'queries' array. Let x = queries[i][0] and y = queries[i][1], such that 0 <= i < queries.length.
+    We need to calculate the total number of strings which start and end with a vowel from index 'words[x]' to 'words[y]'.
+    But, checking the strings, if they start and end with vowel, for every query consumes more time. Also, in the worst case we would be iterating over the whole 'words' array for every query.
+
+2)  We can simply iterate over the 'words' array before Point 1 and calculate if a string is starting & ending with vowel.
+    We maintain a separate Boolean array for this, which allows us to directly know if the string is starting & ending with a vowel.
+    Still, in the worst case we would be iterating over the whole 'words' array for every query.
+
+3)  We can use a Cumulative Sum Array (or, Prefix Sum Array) 'cumulativeArray', where cumulativeArray[i] stores the total number of strings before index 'i' which start & end with a vowel.
+    Example:
+        Let words = ["aba","bcb","ece","ad","e"]
+        Then, cumulativeArray = [0, 1, 1, 2, 2, 3]
+    Note: The length of cumulativeArray will always be 1 more than words' array length.
+
+4)  Once the cumulativeArray is available, we iterate over the array 'queries' and count the number of strings that start & end with a vowel using the Cumulative Array.
+    If start = 2 and end = 4, then calculate the count = cumulativeArray[end + 1] - cumulativeArray[start]
+
+SOLUTION:
+
+Iterate over the array 'words' to calculate the 'cumulativeArray'. The first element will always be 0, as there are no strings before index 0.
+If the string at index words[i] starts & ends with a vowel, we add 1 to cumulativeArray[i] and store in cumulativeArray[i+1]. Once it is completed, we have the cumulativeArray.
+Iterate over the 'queries' array, such that x = queries[i][0] and y = queries[i][1]. Calculate count = count = cumulativeArray[y + 1] - cumulativeArray[x]. Store the count in a separate array.
+At last, we have the answer.
