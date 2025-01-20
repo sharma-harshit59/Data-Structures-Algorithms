@@ -1,0 +1,6 @@
+The solution for this problem can be devised using 3 intuitions:
+
+1)  A Simple Brute Force solution suggests we iterate over the array 'arr'. For each element 'arr[k]', find the position of 'arr[k]' in array 'mat' such that mat[i][j] == arr[k].
+    Mark the position [i, j] as Painted and check if the corresponding row or column is painted completely.
+    If the complete row/column is painted, we return the index 'k', else repeat the process.
+    But, this solution is very time-taking.
