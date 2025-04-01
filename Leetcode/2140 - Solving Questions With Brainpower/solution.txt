@@ -1,0 +1,16 @@
+The solution for this problem can be devised using the below intuitions -
+1)  The problem presents a choice at each question: either solve it and skip the next few questions or skip it and move to the next.
+    This suggests a dynamic programming (DP) approach since each decision affects future choices, and overlapping subproblems exist.
+
+2)  A recursive solution with memoization is ideal to avoid redundant calculations while efficiently computing the maximum points.
+
+SOLUTION:
+
+1)  We define a recursive function calcMaxPoints(index) that computes the maximum points starting from index 0.
+
+2)  Base case: If index is out of bounds, i.e., the index is greater the length of the array, return 0.
+    General Case: 
+        a)  Solve the question: Earn "points" and jump to "index + brainpower[index] + 1" (since solving prevents solving the next brainpower questions).
+        b)  Skip the Question: Move to the next question at index + 1.
+
+3)  Memoization: Store the results of calcMaxPoints(index) in a dictionary/object to avoid redundant calculations.
