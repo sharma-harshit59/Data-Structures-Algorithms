@@ -1,0 +1,24 @@
+SOLUTION:
+We’re asked to search for a target value in a sorted array and return its index, or -1 if it doesn’t exist.
+Since the array is sorted in ascending order and all elements are unique, the optimal approach is to use binary search, which operates in logarithmic time — O(log n).
+
+1) Initialize Search Bounds
+    Start by setting up two pointers:
+        One at the beginning of the array (this marks the start of the current search space).
+        One at the end of the array (this marks the end of the search space).
+    These two pointers define the part of the array you're currently considering.
+
+2) Loop While Search Space is Valid
+    As long as the starting pointer does not cross the ending pointer, continue searching. At each iteration:
+        Calculate the middle index of the current search space.
+        Check the value at this middle index.
+
+3) Three Possible Outcomes
+    There are three possibilities at each step:
+        If the middle value equals the target, you've found the element and return its index.
+        If the middle value is less than the target, this means the target can only lie in the right half of the current search space. So, you move the start pointer just past the middle to narrow the search to the right.
+        If the middle value is greater than the target, the target must be in the left half. So, you move the end pointer just before the middle to search in the left half.
+
+4) Target Not Found
+    If the loop ends without finding the target, it means the target doesn’t exist in the array. In this case, return -1.
+
