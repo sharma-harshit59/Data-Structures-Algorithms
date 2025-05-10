@@ -1,0 +1,29 @@
+SOLUTION:
+The goal of the problem is to replace all the 0's in two arrays with strictly positive integers such that the total sums of both arrays become equal.
+If it's not possible, return -1. Otherwise, return the minimum equal sum that can be achieved.
+
+1)  Initialize Sum and Zero Counters
+    Start by computing two things for each array:
+        The current sum, treating each 0 as 1 (since replacements must be strictly positive and the minimum such value is 1).
+        The count of zeros, which tells us how many values need to be replaced.
+    This ensures you're preparing for the minimum possible sum each array could achieve after replacement.
+
+2)  Simulate the Minimum Total Sum
+    You treat each 0 as 1 during sum calculation to simulate the least possible increase in total.
+    This gives the minimum theoretical total that the array could have once all 0s are replaced.
+    So, after this step, you have the minimum possible total for nums1 and nums2.
+    You also know how much room you have (via zero counts) to increase the total in each array if needed.
+
+3)  Check for Impossibility
+    There are two key cases where it's impossible to make the totals equal:
+        If nums1 already has a smaller sum than nums2, but it has no zeroes to increase it, you can't make up the difference.
+        Similarly, if nums2 already has a smaller sum than nums1, but it has no zeroes to increase it, you can't make up the difference.
+    In either of these cases, you return -1 as it's impossible.
+
+4)  Return the Minimum Valid Equal Sum
+    If neither case of impossibility occurs, then it's possible to adjust one or both arrays (by increasing some of the 0s beyond 1) until both sums are equal.
+    The minimum value you can reach in this way is the greater of the two "minimum possible totals" — since the smaller one can always be increased using its 0s.
+    So, the result is the maximum of the two minimum totals computed earlier.
+
+TIME-COMPLEXITY: O(n), since you make a single pass through each array.
+SPACE-COMPLEXITY: O(1), using only a fixed number of counters and accumulators.
