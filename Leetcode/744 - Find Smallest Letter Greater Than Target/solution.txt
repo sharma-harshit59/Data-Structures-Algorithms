@@ -1,0 +1,29 @@
+SOLUTION:
+The goal of this problem is to find the smallest character in the given array that is strictly greater than a given target character.
+If no such character exists (i.e., the target is greater than or equal to all characters in the array), you should return the first character — this reflects a wrap-around behavior.
+Since the array is sorted and contains only lowercase letters, a binary search is the most efficient way to solve this, giving you the required O(log n) time complexity.
+
+1)  Set Up Binary Search
+    You start with two pointers:
+        One pointing at the beginning of the array.
+        The other pointing at the end.
+    These will be used to narrow down the portion of the array being searched.
+
+2)  Binary Search Loop
+    As long as the starting index is less than or equal to the ending index, you:
+        Compute the midpoint of the current range.
+        Check whether the character at the midpoint is less than or equal to the target.
+        Here are the two key cases inside the loop:
+            If the middle character is less than or equal to the target, then you discard the left half (including mid) by moving the start index one position to the right.
+            If the middle character is greater, then the answer might be at mid or earlier, so you shift the end index to one position left.
+    This loop continues narrowing the range until you’ve isolated the correct insertion point for a character greater than the target.
+
+3)  Determine the Result
+    After the loop, the start index (firstIdx) represents the position of the smallest character greater than the target, if it exists.
+    There are two outcomes here:
+        If firstIdx is within bounds of the array, the character at that index is the answer.
+        If firstIdx has moved past the end of the array, that means all characters in the array are less than or equal to the target, so you wrap around and return the first character of the array.
+    This wrap-around behavior is handled elegantly by using the modulo operator. It ensures that letters[firstIdx % letters.length] always returns a valid character — and loops back to the start if needed.
+
+TIME-COMPLEXITY: O(log n), due to binary search.
+SPACE-COMPLEXITY: O(1), since only a few pointers are used and no extra space is allocated.
