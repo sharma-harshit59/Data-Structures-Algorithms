@@ -1,0 +1,28 @@
+SOLUTION:
+The task is to find the maximum product of any two digits in a given integer.
+The digits can be in any order, and you can use the same digit twice only if it appears multiple times in the number.
+Since the maximum number has at most 9 digits, a direct digit-level analysis is efficient and acceptable.
+
+1)  Extract Digits One by One
+    Start by iterating through each digit of the number from the least significant digit (rightmost) to the most significant (leftmost).
+    This is done by:
+        Taking the last digit of the number.
+        Then removing it by dividing the number by 10 (and flooring the result).
+
+2)  Track the Two Largest Digits
+    As you go through each digit:
+        Keep track of the largest digit found so far.
+        Also track the second-largest digit found so far.
+    You do this because the maximum product will always come from multiplying the two largest digits in the number.
+    
+    Whenever a new digit is found:
+        If it's larger than the current largest, promote the current largest to second-largest, and update the largest.
+        If it's not larger than the largest but greater than the current second-largest, update the second-largest.
+    This keeps the two biggest digits updated in real-time as you scan through the number.
+
+3)  Return Their Product
+    After checking all digits, multiply the two largest digits and return that product.
+    This is guaranteed to be the highest product possible between any two digits in the number.
+
+TIME-COMPLEXITY: O(log₁₀ n), since you're iterating through the digits of the number — up to 9 digits max.
+SPACE-COMPLEXITY: O(1), only two variables are used to track the two largest digits.
