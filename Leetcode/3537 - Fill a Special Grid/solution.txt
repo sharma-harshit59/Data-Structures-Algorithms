@@ -1,0 +1,33 @@
+SOLUTION:
+The goal is to construct a 2ⁿ × 2ⁿ grid filled with numbers from 0 to 2²ⁿ - 1 such that it satisfies specific hierarchical quadrant rules.
+At every level, each quadrant must obey a strict ordering: Top-right < Bottom-right < Bottom-left < Top-left
+And recursively, each quadrant must itself be a "special grid".
+This recursive structure naturally suggests a divide-and-conquer strategy, but instead of recursion, the solution uses an iterative BFS-like simulation via a queue. This is efficient and avoids deep call stacks.
+
+1)  Grid Initialization
+    First, compute the size of the final grid (2ⁿ × 2ⁿ) and create it with placeholder values.
+    A counter is initialized to track the values being placed from 0 upwards.
+
+2)  Queue-Based Subdivision Process
+    A queue is used to track the processing of subgrids. Each element in the queue contains:
+        The top-right corner position of the current quadrant.
+        The size (maxStep) of the current quadrant (starts with the full grid).
+    
+    Processing follows these steps:
+        If a subgrid is of size 1 × 1, it's a base case. You place the current counter value into that cell and increment the counter.
+        Otherwise, divide the current square into four quadrants of equal size:
+            Top-right
+            Bottom-right
+            Bottom-left
+            Top-left
+        These are enqueued in this specific order, as it ensures that the values get assigned to each quadrant in the correct priority order.
+    This order enforces the problem’s hierarchy where each quadrant will receive a contiguous block of values, and the earlier quadrants get smaller values than the later ones.
+
+3)  Traversal Order and Number Assignment
+    The traversal order (top-right → bottom-right → bottom-left → top-left) combined with the queue-based BFS traversal ensures that the value ranges assigned to quadrants maintain the proper inequalities:
+        Every quadrant receives a subgrid with values strictly higher than the quadrant before it.
+        This ensures that at every level of division, the quadrant constraints are satisfied.
+    Since every quadrant is itself processed as a smaller grid, the recursive condition that each quadrant must also be special is inherently met.
+
+TIME-COMPLEXITY: O(4ⁿ), since you're filling a 2ⁿ × 2ⁿ grid — which has 4ⁿ cells.
+SPACE-COMPLEXITY: Also O(4ⁿ), due to the grid storage and the queue that processes each quadrant (though queue memory is more transient).
