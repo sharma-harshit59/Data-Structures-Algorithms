@@ -1,0 +1,23 @@
+SOLUTION:
+The task is to determine whether there are three consecutive odd numbers anywhere within a given list of integers.
+To solve this, the approach involves scanning the array from start to end and checking every group of three consecutive numbers to see if all of them are odd. Here's how it's done step by step:
+
+1)  Check the Length of the Array
+    First, check if the array has fewer than 3 elements.
+    If so, it’s impossible to have three consecutive numbers, so immediately return false.
+
+2)  Iterate Over the Array
+    Begin scanning the array from the start up to the third-last element.
+    For each position in the array, look at the current number and the next two numbers (i.e., a group of three).
+
+3)  Check If All Three Are Odd
+    For the current group of three numbers:
+        Check if each number is odd.
+        A number is odd if dividing it by 2 leaves a remainder (i.e., not divisible evenly by 2).
+        If all three numbers in this group are odd, return true immediately.
+
+4)  Finish Loop Without Finding a Match
+    If the loop completes and no group of three consecutive odd numbers is found, return false.
+
+TIME-COMPLEXITY: O(n) where n is the number of elements in the array. Each element (up to the third-last) is visited once in a linear pass.
+SPACE-COMPLEXITY: O(1) constant space, as no additional data structures are used — only simple comparisons.
