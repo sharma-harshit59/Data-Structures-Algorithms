@@ -1,0 +1,40 @@
+SOLUTION:
+The task is to count how many negative numbers are present in a 2D matrix where:
+    Each row is sorted in non-increasing order (left to right).
+    Each column is also sorted in non-increasing order (top to bottom).
+This structure allows us to use binary search in each row to efficiently locate where the negative numbers begin.
+
+1)  Initialize Count and Boundary
+    Start by setting a counter to keep track of the total number of negative numbers.
+    Also maintain an index (lastMidIdx) to remember the rightmost possible starting point for negatives in the next rows.
+    Since the rows are sorted, if we find the first negative at position j in one row, then in the next row it can only appear at j or to the left of j.
+
+2)  Loop Through Each Row
+    For every row in the grid:
+        Use binary search to find the first negative number in that row.
+        Binary search limits:
+            firstIdx starts at 0.
+            lastIdx starts at lastMidIdx (from the previous row's result to optimize performance).
+
+3)  Binary Search to Locate First Negative
+    While firstIdx <= lastIdx, compute the middle index midIdx.
+    If the number at midIdx is negative:
+        Check if it's the first negative in the row by confirming that the element before it is non-negative or midIdx is at 0.
+        If yes:
+            All numbers after and including midIdx are negative due to sorting.
+            Add (row length - midIdx) to the total count.
+            Update lastMidIdx to midIdx to optimize the next row's search.
+            Break out of the loop to process the next row.
+        If not, continue searching in the left half of the row.
+        If the number at midIdx is non-negative, search in the right half.
+
+4)  Final Optimization: Early Exit
+    If the first negative number in any row is found at index 0, then all numbers in this row and every row below are guaranteed to be negative (since columns are also sorted).
+    In this case:
+        Add all remaining numbers in the rows below directly to the count.
+        Exit the loop early for efficiency.
+
+TIME-COMPLEXITY: O(m × log n), where m is the number of rows and n is the number of columns.
+Binary search is used per row (log n), and we optimize further by shrinking the search window with lastMidIdx.
+
+SPACE-COMPLEXITY: O(1) — constant space used regardless of input size.
