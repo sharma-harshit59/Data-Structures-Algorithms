@@ -1,0 +1,36 @@
+SOLUTION:
+The task is to generate all unique three-digit integers using digits from a given list, such that:
+    The integer has exactly three digits.
+    It is formed by selecting any three digits from the list (respecting the number of times each digit appears).
+    It must not start with a zero.
+    It must be an even number.
+The final result must be a sorted list of these valid, unique integers.
+
+1)  Count How Many Times Each Digit Appears
+    Start by counting how many times each digit (from 0 to 9) appears in the input list.
+    This allows us to later check if a given number can be formed from the input digits, respecting duplicates.
+
+2)  Try Every 3-Digit Even Number
+    Check all numbers from 100 to 999, incrementing by 2 to ensure the number is even.
+    Skipping odd numbers helps avoid unnecessary checks.
+
+3)  Break Each Number Into Digits
+    For each number:
+        Extract the hundreds digit (d1), tens digit (d2), and units digit (d3).
+        These digits represent a candidate combination to check against the original list.
+
+4)  Check If the Number Can Be Built
+    For each candidate number:
+        Copy the original digit frequency counts.
+        Subtract one for each of the three digits used in the number.
+        If any of the counts go below zero, it means we don’t have enough of that digit — so skip this number.
+        Otherwise, the number is valid and can be added to the result list.
+
+5)  Return the Result
+    The result list will automatically be sorted because we're iterating through numbers from 100 to 999 in increasing order.
+    Return the list of all valid numbers.
+
+TIME-COMPLEXITY: O(1) with respect to the range of candidate numbers: Only 450 numbers (from 100 to 998, even only) are checked.
+                 Checking each number is O(1) due to fixed digit length.
+
+SPACE-COMPLEXITY: O(1) for digit frequency arrays (size 10). O(k) for storing the final result, where k is the number of valid integers.
