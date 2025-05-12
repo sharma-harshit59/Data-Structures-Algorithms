@@ -1,0 +1,38 @@
+SOLUTION:
+This problem is a variation of Binary Search.
+Instead of only locating whether a target exists, you must find both the first and last positions where the target occurs.
+Since the input array is sorted in non-decreasing order, a binary search approach is ideal and guarantees the required O(log n) runtime.
+
+1)  Initialize the Search Range for First Occurrence
+    To find the starting index, set two pointers:
+        One at the beginning of the array.
+        One at the end of the array.
+    You'll also track the result in a variable (initially -1) that will store the leftmost index where the target is found.
+
+2)  Binary Search Loop to Find First Occurrence
+    As long as the start index is less than or equal to the end:
+        Compute the midpoint.
+        Compare the element at the midpoint with the target.
+        Three cases:
+            If it's equal to the target, store the index in the result and move the end pointer to the left half (since you're searching for the first occurrence).
+            If the midpoint value is greater than the target, shift the end pointer left.
+            If the midpoint value is less than the target, shift the start pointer right.
+    This continues until the search range collapses.
+    If no match is found, you can safely return [-1, -1] since the target does not exist.
+
+3)  Binary Search Loop to Find Last Occurrence
+    If the first occurrence was found, perform another binary search to find the rightmost position:
+        Reset the start and end pointers.
+        Again, while start ≤ end:
+            Compute the midpoint.
+            If it's equal to the target, store the index in the result and move the start pointer to the right half.
+            Otherwise, adjust start or end as needed (same binary search logic applies).
+        This ensures that the latest possible index of the target is located.
+
+4)  Return Final Range
+    Return an array containing the first and last recorded indices.
+    If the target is not present, this will return the default [-1, -1].
+    Otherwise, you get the full span [startIndex, endIndex].
+
+TIME-COMPLEXITY: O(log n) — Each binary search operates in logarithmic time, and we perform it twice.
+SPACE-COMPLEXITY: O(1) — No extra space is used beyond a few variables for tracking indices.
