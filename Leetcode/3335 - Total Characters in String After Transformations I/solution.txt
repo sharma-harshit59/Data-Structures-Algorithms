@@ -1,0 +1,23 @@
+SOLUTION:
+This problem involves performing multiple transformations on a string where each character is modified according to specific rules.
+The challenge lies in efficiently determining the length of the string after a series of transformations without actually performing the transformations on the entire string, as it could become too large.
+
+1)  Initial Character Frequency Count
+    Start by counting the frequency of each character in the input string s. The string consists only of lowercase English letters, so maintain an array of size 26 (corresponding to the letters 'a' to 'z') to store the frequency of each character.
+    For each character in the string, increment its corresponding count in the array. This count represents how many times each character appears in the initial string.
+
+2)  Transformation Process
+    In each transformation, every character in the string is replaced according to the following rules:
+        If the character is 'z', replace it with the string "ab" (which increases the length by 2).
+        If the character is not 'z', replace it with the next character in the alphabet (which does not change the length).
+    Instead of constructing the new string after each transformation (which would be inefficient for large strings), keep track of the counts of each character after each transformation.
+    If a character is 'z', it transforms into 'a' and 'b', so update the counts of 'a' and 'b' accordingly.
+    For other characters, simply shift the count of each character to the next character in the alphabet (i.e., move the count of 'a' to 'b', 'b' to 'c', etc.).
+    Repeat this transformation process for t times. During each transformation, you update the character counts based on the rules and shift the counts efficiently.
+
+3)  Calculating the Resulting String Length
+    After performing all t transformations, the final string length is the sum of the counts of all characters in the frequency array. Since the string length may become very large, return the result modulo 10⁹ + 7 to avoid overflow.
+    The final length of the string is computed as the sum of all the values in the frequency array after t transformations, modulo 10⁹ + 7.
+
+TIME-COMPLEXITY: O(t * 26), where t is the number of transformations and 26 represents the number of characters in the alphabet. This results in O(t) time complexity, as we iterate through the character counts during each transformation.
+SPACE-COMPLEXITY: O(26), as we only need to maintain the frequency counts of 26 characters, regardless of the length of the input string. This results in constant space complexity, O(1).
