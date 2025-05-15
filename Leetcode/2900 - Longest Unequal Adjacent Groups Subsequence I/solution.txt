@@ -1,0 +1,33 @@
+SOLUTION:
+    This problem is about finding the longest alternating subsequence from a list of words based on a corresponding binary group indicator.
+    An alternating subsequence means that for every two consecutive words in the selected subsequence, the associated group values must differ (i.e., 0 and 1 must alternate).
+    The goal is to maximize the length of such a subsequence.
+
+1)  Core Idea: Two-Pass Simulation (Start from Group 0 and Group 1 Separately)
+    We cannot randomly select alternating indices; we must simulate the selection to find the longest possible valid sequence.
+    Since alternating sequences can start with either group 0 or 1, we attempt both:
+        One sequence assuming it starts with group 0
+        One sequence assuming it starts with group 1
+    For both cases, we iterate through the array and pick elements only if their group matches what is expected next (expect). After selecting a word, the expectation flips (from 0 to 1 or 1 to 0), ensuring alternation.
+
+2)  Step-by-Step Algorithm:
+    Step 1: Initialize Two Sequences
+        Create two empty lists:
+        One for the sequence starting with group 0
+        One for the sequence starting with group 1
+        Also define two variables to track the expected group for each sequence (expect0 = 0, expect1 = 1)
+
+    Step 2: Loop Through the Array
+        For each index i in the input:
+        If groups[i] matches expect0, append words[i] to the first sequence and flip expect0
+        Similarly, if groups[i] matches expect1, append words[i] to the second sequence and flip expect1
+
+    Step 3: Return the Longer Sequence
+        After traversing the entire array, compare the lengths of the two sequences.
+        Return the longer one. If equal, return either — both are valid.
+
+3)  Why This Works?
+    This method works because it greedily builds the longest valid alternating sequence from left to right, trying both possible starting values. Since the input size is small (n <= 100), checking both paths is efficient and covers all cases.
+
+TIME-COMPLEXITY: O(n) - We traverse the list once while building both sequences in a single pass.
+SPACE-COMPLEXITY: O(n) - In the worst case, the result may include all elements from the input array.
