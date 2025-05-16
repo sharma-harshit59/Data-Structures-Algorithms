@@ -1,0 +1,28 @@
+SOLUTION:
+This problem is a classic Binary Search application.
+You are given a range from 1 to n, and a hidden number is picked within this range.
+You can query your guess using a predefined guess(num) API, which tells you whether the guess is too high, too low, or correct.
+The optimal way to find the correct number with the fewest guesses is to use binary search, since each feedback narrows the search space by half.
+
+1)  Initialize the Search Range
+    You define two variables to represent the search space:
+        lowestPick: the lower bound of your guessing range (initially 1).
+        highestPick: the upper bound of your guessing range (initially n).
+
+2)  Binary Search Loop
+    While lowestPick is less than or equal to highestPick:
+        Calculate the midpoint:
+            guessedPick = lowestPick + (highestPick - lowestPick) // 2
+    This formula avoids potential overflow issues in some languages when lowestPick + highestPick becomes too large.
+        Call guess(guessedPick):
+            If the result is 0: you've found the correct number. Return guessedPick.
+            If the result is 1: the picked number is higher than guessedPick. Update lowestPick = guessedPick + 1.
+            If the result is -1: the picked number is lower than guessedPick. Update highestPick = guessedPick - 1.
+    This loop continues until you narrow the search down to the correct number.
+
+3)  Why the Binary Search Guarantees the Correct Answer
+    Each feedback from the guess() function eliminates half of the remaining possible values. Because the number is guaranteed to be within the range [1, n], and the range is reduced efficiently with each iteration, the correct number will eventually be found.
+    You don’t need to handle insertion or absence here, unlike some classic binary search variations, because the number is guaranteed to exist in the range. The process stops as soon as it’s found.
+
+TIME-COMPLEXITY: O(log n) — Each iteration halves the search range.
+SPACE-COMPLEXITY: O(1) — Only a constant number of variables are used.
