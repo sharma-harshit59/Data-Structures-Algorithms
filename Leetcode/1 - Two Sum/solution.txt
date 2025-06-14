@@ -1,0 +1,25 @@
+SOLUTION:  
+This problem is a classic application of a Hash Map (or Dictionary) to achieve constant-time lookups.  
+You're given an array of integers `nums` and a `target`. The task is to find the indices of two distinct numbers in the array that add up to the target.
+
+1)  Use a Hash Map to Store Previously Seen Numbers  
+    You iterate through the array once, and for each number:
+        - Compute the complement: the number that would complete the sum with the current number.
+        - Check if that complement has already been seen and stored in a hash map.
+        - If it has, return the indices of the two numbers.
+    This approach avoids the need for nested loops and ensures that each element is processed only once.
+
+2)  Build the Hash Map on the Fly During the Loop  
+    As you loop through the array:
+        - For index `i`, compute `complement = target - nums[i]`.
+        - If `complement` exists in the hash map, return `[hashMap[complement], i]`.
+        - Otherwise, store `nums[i]` in the hash map with its index as the value.
+
+    The map holds each number as a key and its index as the value. This allows constant-time lookup to check whether the complement of the current number has already appeared.
+
+3)  Why This Approach Guarantees the Correct Answer  
+    - The problem guarantees exactly one solution, so as long as we check every element and store all previously seen numbers, we are certain to find the correct pair.
+    - Since we return as soon as we find the pair, the solution is both correct and efficient.
+
+TIME-COMPLEXITY: O(n) — Each number is visited exactly once, and hash map operations (get/set) are O(1) on average.  
+SPACE-COMPLEXITY: O(n) — In the worst case, we store all `n` elements in the hash map.
