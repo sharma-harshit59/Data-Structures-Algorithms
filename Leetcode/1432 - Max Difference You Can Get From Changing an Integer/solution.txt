@@ -1,0 +1,36 @@
+SOLUTION:
+    This problem revolves around digit manipulation and strategic replacements to maximize and minimize the number by transforming digits under certain constraints.
+    You are allowed to perform two digit replacement operations on the same number:
+        - Each time, pick a digit `x` (0 ≤ x ≤ 9) and a digit `y` (0 ≤ y ≤ 9) and replace all occurrences of `x` with `y`.
+        - Neither of the resulting numbers (`a` or `b`) may have leading zeros or become zero.
+    The goal is to return the maximum possible difference between two such operations.
+
+1)  Convert Number to String
+    To easily manipulate individual digits, convert the input number to a string representation.
+    This makes replacement operations straightforward using string processing techniques.
+
+2)  Get Maximum Number (`get_max_num`)
+    To get the largest number possible:
+        - Traverse the number from left to right.
+        - Find the first digit that is not 9.
+        - Replace all occurrences of that digit with '9'.
+        - This guarantees the biggest increase in value.
+        - If all digits are already 9, return the number as is.
+    This operation ensures the number is pushed toward its highest possible value.
+
+3)  Get Minimum Number (`get_min_num`)
+    To get the smallest number possible:
+        - Two cases:
+            a) If the first digit is not '1', replace it with '1'.
+            b) If the first digit is already '1', scan the remaining digits:
+                - Replace the first digit (after the first) that is not '0' and not equal to the first digit, with '0'.
+        - This avoids leading zeros and ensures the number remains valid.
+        - If no suitable replacement digit is found, return the number as is.
+    This minimizes the number as much as possible without violating the rules.
+
+4)  Return the Difference
+    Subtract the minimized number from the maximized number and return the result.
+    This captures the greatest difference achievable with two legal transformations.
+
+TIME-COMPLEXITY: O(n) — Where `n` is the number of digits in the number. Both max and min operations scan digits linearly.
+SPACE-COMPLEXITY: O(n) — String manipulation involves creating new string instances.
