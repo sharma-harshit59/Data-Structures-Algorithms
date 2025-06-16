@@ -1,0 +1,22 @@
+SOLUTION:
+    This problem is a variant of a single-pass minimum tracking algorithm used to determine the maximum profit or difference from a list of integers.
+    The key idea is to track the smallest element seen so far while traversing the array and calculate the difference between the current element and this minimum.  
+    If the current element is greater than the minimum, a valid increasing pair exists, and we update the maximum difference if this difference is larger than the previous ones.
+
+1)  Initialize Minimum Tracker and Maximum Difference
+    - Set a variable `curr_min` to the first element of the array — this represents the smallest value seen so far.
+    - Set `max_diff` to -1 — this will hold the maximum valid difference found.
+
+2)  Iterate Through the Array
+    - Loop through the array from the second element (index 1) to the end:
+        - If the current element is greater than `curr_min`, compute the difference and update `max_diff` if it's larger.
+        - If the current element is less than or equal to `curr_min`, update `curr_min` to this element.
+
+3)  Handle Edge Cases
+    - If no element is found that satisfies the condition `nums[j] > nums[i]` with `i < j`, the initial `max_diff` of -1 remains and will be returned.
+
+4)  Return the Maximum Difference
+    - After iterating through the entire array, return `max_diff`, which is either the greatest valid difference or -1 if no valid pair was found.
+
+TIME-COMPLEXITY: O(n) — We make a single pass through the array of size `n`.  
+SPACE-COMPLEXITY: O(1) — Only a few variables are used, no extra space is required.
