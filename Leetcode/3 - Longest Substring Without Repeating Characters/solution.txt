@@ -1,0 +1,30 @@
+SOLUTION:
+    This problem is a variation of the Sliding Window technique.
+    Instead of scanning all substrings (which would take O(n²) time), we use a dynamic window to efficiently find the longest substring without repeating characters.
+    The main idea is to maintain a window [left, right) such that all characters in the window are unique.
+    We expand the window by moving the `right` pointer and contract it by moving the `left` pointer as needed.
+
+1)  Initialize Window and Tracking Structures
+    - Create a dictionary (`char_count`) to store how many times each character has appeared in the current window.
+    - Initialize two pointers: `left = 0` and `right = 0` to mark the sliding window.
+    - Use a variable `max_length = 0` to store the maximum length found so far.
+
+2)  Expand the Window Using the Right Pointer
+    - Loop while `right < len(s)`:
+        - Let `curr_char = s[right]`.
+        - If `curr_char` is not in the current window (i.e., not in `char_count` or its count is 0), it's safe to expand the window:
+            - Add/increment the character in `char_count`.
+            - Move the `right` pointer forward.
+        - If `curr_char` **is already present** (count > 0), then the window is no longer valid:
+            - Update `max_length` to the current window size (`right - left`).
+            - Shrink the window from the left by decrementing the count of `s[left]` and incrementing `left` until the duplicate is removed.
+
+3)  Final Length Check
+    - After the loop ends, check one last time if the remaining window is the largest:
+        - Return `max(max_length, right - left)`.
+
+4)  Return Result
+    - The function returns the length of the longest substring with all unique characters.
+
+TIME-COMPLEXITY: O(n) — Each character is visited at most twice (once by `right`, once by `left`).
+SPACE-COMPLEXITY: O(k) — Where `k` is the size of the character set (e.g., 26 for lowercase, 128 for ASCII).
