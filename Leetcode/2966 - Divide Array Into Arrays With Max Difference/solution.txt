@@ -1,0 +1,24 @@
+SOLUTION:  
+    This problem is a variation of greedy partitioning.  
+    The goal is to divide a list into groups of 3 such that the difference between the maximum and minimum in each group is at most `k`.  
+    Because the input guarantees that such grouping is only possible when this condition holds for every triplet in sorted order, we can safely apply sorting and greedy chunking.
+
+1)  Sort the Input Array  
+    Since we are grouping elements such that the difference between max and min in each group is ≤ k, sorting simplifies comparisons.  
+    After sorting, the smallest numbers are grouped together, which increases the chances of satisfying the condition.  
+    This is crucial because it allows consecutive elements to be the most likely valid group.
+
+2)  Iterate Through Sorted Array in Groups of 3  
+    Loop through the array with an increment of 3, forming triplets:
+        For each group starting at index i-2 and ending at i:
+            Check if the difference between the largest and smallest value (nums[i] - nums[i-2]) is ≤ k.
+            If the condition is met, this group is valid and is appended to the result.
+            If not, we immediately return an empty list — since any invalid group violates the problem constraint.
+
+3)  Collect and Return All Valid Groups  
+    Once all valid groups are added, return the 2D result array.  
+    This array contains all the groups where the condition was met.  
+    Due to the problem's guarantee, if we successfully group the entire array, the output is valid.
+
+TIME-COMPLEXITY: O(n log n) — Sorting takes O(n log n), and we process the list in O(n).  
+SPACE-COMPLEXITY: O(n) — To store the result array of triplets.
