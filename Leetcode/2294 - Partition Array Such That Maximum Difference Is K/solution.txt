@@ -1,0 +1,26 @@
+SOLUTION:  
+This problem is a greedy partitioning problem where the goal is to divide the array into the minimum number of subsequences such that the difference between the maximum and minimum elements in each subsequence is at most k.  
+
+Since subsequences do not require contiguous elements, we can sort the array and process the elements from left to right.  
+The greedy idea is to include as many elements as possible in the current subsequence until the difference condition is violated.
+
+1)  Sort the Array  
+    Sorting `nums` ensures that we process elements in increasing order.  
+    This way, we can efficiently group values that are close together and control the min-max range.
+
+2)  Initialize Subsequence Counters  
+    Start with:
+    - `totalSubSeq = 1` — at least one subsequence will be required.
+    - `currMin = nums[0]` — the minimum value in the current subsequence.
+
+3)  Traverse and Partition  
+    For every number in the array:
+        - If `nums[i] - currMin > k`, it means adding `nums[i]` would violate the max-min condition.
+        - So, start a new subsequence with `nums[i]` as the new `currMin`.
+        - Increment `totalSubSeq` by 1.
+
+4)  Return the Result  
+    After processing all numbers, return `totalSubSeq` as the minimum number of subsequences required.
+
+TIME-COMPLEXITY: O(n log n) — due to sorting. Traversal is O(n), so total is dominated by the sort.  
+SPACE-COMPLEXITY: O(1) — no extra space beyond a few tracking variables.
