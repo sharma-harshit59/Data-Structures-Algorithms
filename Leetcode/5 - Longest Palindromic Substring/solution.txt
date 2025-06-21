@@ -1,0 +1,29 @@
+SOLUTION:  
+This problem is based on the idea of expanding around center rather than brute-force substring checking.  
+To find the longest palindromic substring in a given string `s`, we consider each index (and each gap between characters) as the center of a potential palindrome.  
+We expand outward from that center as long as the characters on both sides are equal.
+
+The key observation is:
+- A palindrome mirrors around its center.
+- Every palindrome has either one center (odd length) or two centers (even length).
+- Therefore, for a string of length `n`, there are `2n - 1` possible centers to expand from.
+
+1)  Define a Helper Function  
+    A helper function takes two indices (`low`, `high`) and expands outward while the characters at both ends match.
+    Instead of returning the substring immediately, return the indices `[start, end]` to avoid unnecessary slicing.
+
+2)  Initialize Maximum Range  
+    Track the bounds (`max_start`, `max_end`) of the longest palindromic substring found so far.
+    Initialize with the first character as a fallback.
+
+3)  Loop Through All Centers  
+    For each index `i` from 0 to `len(s) - 1`, do:
+        - Expand around center at index `i` for odd-length palindromes.
+        - Expand around center between `i` and `i + 1` for even-length palindromes.
+        - For each case, compare the resulting length with the max so far and update `max_start` and `max_end` accordingly.
+
+4)  Return Final Substring  
+    After examining all centers, slice and return `s[max_start:max_end]`.
+
+TIME-COMPLEXITY: O(n²) — For each of the `n` centers, we may expand up to `n` characters in the worst case.  
+SPACE-COMPLEXITY: O(1) — Constant extra space is used; only indices are stored. (Output substring is not counted as extra space.)
