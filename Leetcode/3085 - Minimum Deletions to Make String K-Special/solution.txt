@@ -1,0 +1,22 @@
+SOLUTION:
+    This problem is a variation of frequency balancing in strings. The goal is to make the frequency of all characters in the string such that the difference between any two frequencies is at most `k`.
+    We are allowed to delete characters to achieve this balance. Since there are only 26 lowercase English letters, we can afford a brute-force approach over possible target frequency ranges, while keeping time complexity efficient.
+
+1)  Count Character Frequencies
+    Initialize an array of size 26 (for 'a' to 'z') and count the occurrences of each character in the given string.
+    Filter out zero counts to get the list of actual character frequencies.
+
+2)  Try Each Frequency as a Target Base
+    For each unique frequency value (let’s call it `base_freq`), we try to make all other character frequencies fall within the range [base_freq, base_freq + k].
+    For each frequency `f`:
+        - If `f < base_freq`, delete all `f` occurrences (because it cannot be increased).
+        - If `f > base_freq + k`, delete the excess characters: `f - (base_freq + k)`.
+        - If `f` is within the range, no deletion is needed.
+    Track the total deletions needed for each base frequency, and update the minimum deletions overall.
+
+3)  Return the Minimum Deletions
+    After iterating through all possible base frequencies, return the minimum number of deletions calculated.
+    This approach leverages the fact that the number of distinct frequencies is small (at most 26), allowing a double loop over them without performance issues.
+
+TIME-COMPLEXITY: O(1) — At most 26 character types, so nested loops run in constant time in practice.
+SPACE-COMPLEXITY: O(1) — Uses a fixed-size array for counting and a few additional variables.
