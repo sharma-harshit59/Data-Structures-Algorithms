@@ -1,0 +1,29 @@
+SOLUTION:  
+This problem is based on simulating the zigzag writing process and collecting the characters row by row.  
+To convert a given string `s` into a zigzag pattern across `numRows`, we simulate writing the characters in a zigzag order and then read each row sequentially.
+
+The key idea is:
+- Characters are placed in `numRows` rows following a zigzag pattern: down and then diagonally up.
+- We track the current row and direction (going down or up) as we iterate over each character in the input string.
+
+1)  Handle Edge Case  
+    If `numRows == 1` or the string length is less than or equal to `numRows`, the zigzag pattern doesn't change the order.
+    Return the original string directly.
+
+2)  Initialize Data Structures  
+    Create a list of strings `zigzag` of size `numRows` to collect characters for each row.
+    Initialize `row = 0` to track the current row.
+    Use a boolean `going_down = True` to determine direction of movement.
+
+3)  Iterate Through Characters  
+    For each character in `s`:
+        - Append the character to the current row in `zigzag`.
+        - If we're at the bottom row (`numRows - 1`), switch direction to upward.
+        - If we're at the top row (`0`), switch direction to downward.
+        - Move `row` accordingly: increment if going down, decrement if going up.
+
+4)  Concatenate Result  
+    Join all strings in `zigzag` together to form the final result string.
+
+TIME-COMPLEXITY: O(n) — Each character is processed exactly once.  
+SPACE-COMPLEXITY: O(n) — We store `n` characters in total, split across the `numRows` rows.
