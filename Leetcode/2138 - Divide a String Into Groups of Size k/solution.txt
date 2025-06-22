@@ -1,0 +1,24 @@
+SOLUTION:
+    This problem involves splitting a string into fixed-size chunks and padding the final chunk if it's shorter than required.
+    It is not a sliding window problem but rather a direct chunking operation. Since every character is used exactly once and placed into a group, 
+    we iterate over the string and create groups of size `k`. If the final group has fewer than `k` characters, we fill it with the `fill` character.
+
+1)  Initialize Output Storage
+    - Create an empty list `result` to hold the resulting substrings.
+    - Initialize an empty string `curr_str` to build each group incrementally.
+
+2)  Iterate Over the String
+    - For each character `char` in the input string `s`:
+        - Append it to `curr_str`.
+        - If the length of `curr_str` reaches `k`, push it into `result` and reset `curr_str`.
+
+3)  Final Group Padding (if needed)
+    - After the loop, check if `curr_str` is not empty:
+        - While its length is less than `k`, append the `fill` character.
+        - Add this final group to `result`.
+
+4)  Return Result
+    - Return the list `result` which now contains all groups of size `k`, with the last one padded as necessary.
+
+TIME-COMPLEXITY: O(n) — We iterate over each of the `n` characters exactly once.
+SPACE-COMPLEXITY: O(n) — We allocate one string per group, and total length of all groups is n + padding (bounded by n + k).
