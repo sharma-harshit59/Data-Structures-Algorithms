@@ -1,0 +1,42 @@
+SOLUTION:  
+    This problem involves counting special triplets (i, j, k) in an array `nums`, where:
+    - All three elements are the same value `x`
+    - Their positions follow `i < j < k`
+    - The values at positions `i` and `k` are equal to twice the value at position `j` (i.e., `nums[i] = nums[k] = 2 * nums[j]`)
+
+    To do this efficiently, we utilize **preprocessing and binary search** instead of brute-force iteration over all triplets.
+
+    The key observation is:
+    - If we fix `j`, then valid `i` and `k` must satisfy:
+        - `nums[i] = nums[k] = 2 * nums[j]`
+        - `i < j < k`
+    - So for each `nums[j]`, we check if `2 * nums[j]` exists in the array.
+    - If it does, we look at the indices where that value occurs, and count:
+        - How many indices are **less than `j`** (valid `i`)
+        - How many are **greater than `j`** (valid `k`)
+    - Multiply those counts for all valid `j`s to get total combinations.
+
+1)  Build an Index Map  
+    Create a dictionary `numsMap` that maps each number to the list of indices where it occurs.  
+    This allows constant-time access to all positions of a given number.
+
+2)  Sort the Index Lists  
+    To apply binary search, we must sort each list of indices for a number.
+
+3)  Define Binary Search Helpers  
+    - `totalIndicesLessThan(indices, target)` returns how many indices are < `target`.
+    - `totalIndicesGreaterThan(indices, target)` returns how many indices are > `target`.
+
+4)  Iterate Over Each Unique Value as `nums[j]`  
+    For each index `j` and value `nums[j]`:
+        - Compute `ikNum = 2 * nums[j]`
+        - If `ikNum` exists in the map, use binary search to:
+            - Count how many indices for `ikNum` are less than `j` (`i` candidates)
+            - Count how many indices are greater than `j` (`k` candidates)
+            - Add `iCount * kCount` to the answer
+
+5)  Return Final Count  
+    Use modulo `10^9 + 7` to avoid integer overflow.
+
+TIME-COMPLEXITY: O(n log m) — For each index `j`, binary search over lists of size `m` (frequency of 2×nums[j])  
+SPACE-COMPLEXITY: O(n) — For storing index lists in `numsMap`
