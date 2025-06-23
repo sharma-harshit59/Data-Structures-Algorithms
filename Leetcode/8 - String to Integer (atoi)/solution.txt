@@ -1,0 +1,26 @@
+SOLUTION:  
+    This problem is about parsing a string and converting it to a valid 32-bit signed integer, following specific parsing rules.  
+    The key challenge is to correctly manage whitespace, signs, numeric characters, and handle integer overflow.
+
+1)  Skip Leading Whitespace  
+    - Use a pointer `i` to scan through the string.  
+    - Advance `i` while the current character is a space (`' '`).
+
+2)  Determine Sign  
+    - If the current character is `'+'` or `'-'`, record the sign.  
+    - Default sign is positive (`+1`).  
+    - Move `i` past the sign character if it exists.
+
+3)  Convert Digits to Integer  
+    - Initialize `num = 0`.  
+    - While the current character is a digit (`0–9`), multiply the current result by 10 and add the digit.  
+    - Use ASCII or built-in conversion like `int(s[i])`.
+
+4)  Handle 32-bit Integer Overflow  
+    - During digit accumulation, if the signed number goes below `-2³¹` or above `2³¹ - 1`, clamp and return the limit (`INT_MIN` or `INT_MAX`).
+
+5)  Return Result  
+    - Multiply the accumulated number by the determined sign and return.
+
+TIME-COMPLEXITY: O(n) — Scans each character in the input string at most once.  
+SPACE-COMPLEXITY: O(1) — Uses constant extra space.
