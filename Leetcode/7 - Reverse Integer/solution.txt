@@ -1,0 +1,27 @@
+SOLUTION:  
+    This problem involves reversing the digits of a 32-bit signed integer.  
+    The key challenge is to handle the sign of the number and ensure the result stays within the 32-bit signed integer range [−2³¹, 2³¹ − 1].  
+    We avoid converting the number to a string for better performance and type safety, especially in strongly typed languages.
+
+1)  Extract Absolute Value and Initialize Result
+    - Use `abs(x)` to get the absolute value of the input number.
+    - Initialize a variable `rev = 0` to build the reversed number digit by digit.
+
+2)  Build the Reversed Number
+    - While the absolute number (`num`) is greater than 0:
+        - Extract the last digit using `num % 10`.
+        - Append this digit to the reversed number using: `rev = rev * 10 + digit`.
+        - Remove the last digit from `num` using integer division: `num //= 10`.
+
+3)  Restore the Original Sign
+    - If the original number `x` was negative, multiply `rev` by -1.
+
+4)  Handle Overflow
+    - If the result `rev` is within the 32-bit signed integer range (−2³¹ to 2³¹ − 1), return it.
+    - Otherwise, return 0 to indicate overflow.
+
+5)  Return Result
+    - The function returns the reversed integer or 0 if the result is out of bounds.
+
+TIME-COMPLEXITY: O(log₁₀(x)) — We process each digit of the number once.  
+SPACE-COMPLEXITY: O(1) — Constant extra space is used.
