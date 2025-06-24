@@ -1,0 +1,29 @@
+SOLUTION:
+    This problem asks for the maximum area of water that can be trapped between two vertical lines from the input array `height`.
+    Each line is drawn at an x-coordinate (its index), and its height is the value at that index.
+    The area formed between two lines is determined by the shorter of the two heights and the distance between them.
+
+To solve this optimally, we use the two-pointer technique — an efficient strategy to scan from both ends toward the center.
+
+1)  Initialize Two Pointers
+    Place one pointer at the beginning (`start = 0`) and the other at the end (`end = len(height) - 1`).
+    Also initialize a variable `maxContainer` to track the maximum area found so far.
+
+2)  Use a Loop to Evaluate Possible Containers
+    While the `start` pointer is to the left of the `end`:
+        - Calculate the current height as the minimum of the two heights at `start` and `end`.
+        - Compute the width as `end - start`.
+        - Calculate the current area as `height * width`.
+        - Update `maxContainer` if this area is greater than the previous maximum.
+
+3)  Move the Shorter Line Inward
+    To try and find a taller line (which might yield a larger area), move the pointer pointing to the shorter line:
+        - If `height[start] < height[end]`, increment `start`
+        - Otherwise, decrement `end`
+    This greedy step ensures that we only move in the direction where there's a chance to improve the height constraint.
+
+4)  Return the Final Maximum Area
+    Once the two pointers meet, return the value in `maxContainer`.
+
+TIME-COMPLEXITY: O(n) — Each index is visited at most once by either `start` or `end`.
+SPACE-COMPLEXITY: O(1) — No additional space is used beyond a few integer variables.
