@@ -1,0 +1,31 @@
+SOLUTION:
+This problem requires identifying all indices `i` in the array such that there exists at least one index `j` where `nums[j] == key` and `|i - j| <= k`.
+The array is not sorted, so a linear scan is required.
+The optimal strategy is to collect and merge index ranges where the `key` occurs, and then generate all indices within those merged ranges.
+
+1)  Traverse the Array to Locate Key Indices
+    Loop through the array once:
+        Whenever an element equals the given `key`, compute the index range `[i - k, i + k]`, clamping it to array bounds.
+        These ranges represent all possible positions that are within `k` distance from that key occurrence.
+
+2)  Merge Overlapping Ranges
+    Because multiple key occurrences may produce overlapping ranges, merging these overlapping or adjacent ranges helps avoid duplicates and redundant work.
+    Maintain two variables to track the current merging window:
+        - `currStart`: the beginning of the current merged range.
+        - `currEnd`: the end of the current merged range.
+    For each new range:
+        - If it overlaps with or is adjacent to the current range, extend the range.
+        - If it doesn't, push the previous range to the result list and start a new range.
+    This ensures only non-overlapping and non-redundant ranges are considered.
+
+3)  Generate the Final Indices
+    After building the merged ranges, iterate through each `[start, end]` range.
+    For each range, collect all integers from `start` to `end` (inclusive).
+    Append these indices to the result list.
+
+4)  Return Final List
+    The result list now contains all `k`-distant indices.
+    Because ranges are processed in order and merged correctly, the final result is automatically sorted and contains no duplicates.
+
+TIME-COMPLEXITY: O(n) — We scan the array once to find key occurrences, and at most iterate through the array again to fill indices (no sorting or nested loops).
+SPACE-COMPLEXITY: O(n) — We use additional space for storing merged ranges and the result list of indices.
