@@ -1,0 +1,27 @@
+SOLUTION:
+    This problem asks whether a given integer reads the same forward and backward — i.e., whether it is a palindrome.
+    Since string conversion is not allowed in the optimal solution, we can solve this problem mathematically by reversing the number.
+    To optimize, we only reverse half the number to avoid unnecessary computation and potential overflow.
+
+1)  Handle Edge Cases Up Front
+    - If `x` is negative, it's not a palindrome due to the minus sign.
+    - If `x` ends with 0 but is not 0 itself, it cannot be a palindrome (e.g., 10 → 01).
+    Return `False` immediately in these cases.
+
+2)  Reverse Half the Number
+    Initialize a `reverse` variable to 0.
+    Repeatedly extract the last digit of `x` and build the reverse number:
+        - Multiply `reverse` by 10 and add `x % 10`
+        - Remove the last digit from `x` using integer division (`x // 10`)
+    Stop when `reverse >= x` — meaning we've processed half or more of the digits.
+
+3)  Compare Left and Right Halves
+    At this point:
+        - If the number of digits is even: both halves will match → check `x == reverse`
+        - If the number of digits is odd: middle digit can be ignored → check `x == reverse // 10`
+
+4)  Return Final Result
+    Return `True` if either condition matches, else return `False`.
+
+TIME-COMPLEXITY: O(log₁₀ n) — We process half of the digits of the input number.
+SPACE-COMPLEXITY: O(1) — No extra space used beyond a few integer variables.
