@@ -1,0 +1,25 @@
+SOLUTION:
+The goal is to convert an integer (between 1 and 3999) to its Roman numeral representation.
+Roman numerals are formed by combining symbols based on place values (thousands, hundreds, tens, ones), with special handling for subtractive notation (like IV = 4, IX = 9).
+
+We can use a greedy algorithm, subtracting the largest possible Roman symbol value from the number at each step.
+
+1)  Define a Mapping of Values to Roman Symbols
+    Create a fixed list of value-symbol pairs ordered from largest to smallest:
+        - Includes standard numerals like 1000 → 'M', 100 → 'C'
+        - Also includes subtractive forms like 900 → 'CM', 4 → 'IV'
+    This ensures we always use the largest valid Roman value at each step.
+
+2)  Iterate Through the Mapping
+    Initialize an empty string to store the result.
+    Loop through the value-symbol pairs:
+        - While the current number is greater than or equal to the value:
+            - Append the symbol to the result
+            - Subtract the value from the number
+    Repeat this until the number is reduced to zero.
+
+3)  Return the Roman Numeral
+    After processing all values, return the accumulated Roman numeral string.
+
+TIME-COMPLEXITY: O(1) — The input is constrained (1 ≤ num ≤ 3999), so the loop runs at most a constant number of times.
+SPACE-COMPLEXITY: O(1) — Only a fixed mapping and result string are used.
