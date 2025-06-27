@@ -1,0 +1,25 @@
+SOLUTION:
+This problem asks for the longest common prefix string shared among all strings in a given list. If no such prefix exists, return an empty string.
+
+We solve it efficiently using a greedy reduction approach — we start with the first string as the initial prefix and shorten it while comparing with each subsequent string.
+
+1)  Handle Edge Cases
+    - If the list is empty, return an empty string.
+    - If the list has only one string, return that string as the prefix.
+
+2)  Initialize the Prefix
+    Take the first string in the array as the initial prefix.
+    This prefix will be progressively shortened if mismatches are found with other strings.
+
+3)  Compare the Prefix with Each String
+    Loop through each string in the array (starting from the second):
+        - Use a pointer `j` to compare characters of the current prefix and the current string.
+        - Stop comparing when characters differ or the end of either string is reached.
+        - Slice the prefix up to index `j` since that’s the new common part.
+        - If the prefix becomes empty, break early — no common prefix exists.
+
+4)  Return the Final Prefix
+    The remaining value of the prefix after all comparisons is the longest common prefix.
+
+TIME-COMPLEXITY: O(n * m) — where `n` is the number of strings and `m` is the length of the shortest string.
+SPACE-COMPLEXITY: O(1) — only a few variables are used for tracking state.
