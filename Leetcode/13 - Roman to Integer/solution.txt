@@ -1,0 +1,23 @@
+SOLUTION:
+    The problem requires converting a Roman numeral string into its corresponding integer value.
+    Roman numerals use letters to represent values, with subtractive notation used for certain combinations (e.g., IV = 4, IX = 9).
+    The optimal solution uses a greedy one-pass approach by scanning the string from left to right, interpreting each character and applying the subtraction rule when needed.
+
+1)  Map Roman Symbols to Integer Values
+    Create a fixed mapping from Roman characters to their integer values:
+        'I' → 1, 'V' → 5, 'X' → 10, 'L' → 50,
+        'C' → 100, 'D' → 500, 'M' → 1000
+
+2)  Iterate Through the String
+    Use a loop to traverse the string from left to right:
+        - At each position, retrieve the current symbol's value
+        - Also check the next symbol's value (if it exists)
+        - If the current value is less than the next value, apply subtractive logic:
+            Add (next - current) to the result and skip the next symbol by incrementing the index by 2
+        - Otherwise, add the current value and move to the next symbol
+
+3)  Return the Final Computed Value
+    The accumulated value represents the integer equivalent of the Roman numeral string.
+
+TIME-COMPLEXITY: O(n) — We traverse the input string once, examining each character or pair.
+SPACE-COMPLEXITY: O(1) — A fixed-size symbol map is used, and only a few variables are allocated.
