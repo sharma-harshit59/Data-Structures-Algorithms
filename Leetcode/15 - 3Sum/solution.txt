@@ -1,0 +1,29 @@
+SOLUTION:
+    The problem is to find all unique triplets in an array that sum up to zero.
+    A triplet (a, b, c) is valid if:
+        - a + b + c == 0
+        - The indices of the numbers are different
+        - No duplicate triplets appear in the result
+    We use a sorting + two-pointer approach which is optimal.
+
+1)  Sort the Array
+    Sorting helps group duplicates together and enables a two-pointer scan.
+
+2)  Iterate Through the Array with a Fixed Element
+    Loop with index `i` from 0 to n - 2:
+        - Skip `i` if it's a duplicate of the previous value.
+
+3)  Use Two Pointers for Remaining Two Values
+    For each `i`, set two pointers:
+        - `left = i + 1`, `right = n - 1`
+        - If the sum of `nums[i] + nums[left] + nums[right]` == 0:
+            - Store the triplet
+            - Move both pointers inward, skipping duplicates
+        - If sum < 0: increment `left`
+        - If sum > 0: decrement `right`
+
+4)  Return the List of Unique Triplets
+    All valid triplets will be collected without duplicates.
+
+TIME-COMPLEXITY: O(n²) — Outer loop O(n), inner two-pointer scan O(n)
+SPACE-COMPLEXITY: O(1) — Output excluded, no extra space used
