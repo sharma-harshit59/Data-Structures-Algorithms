@@ -1,0 +1,23 @@
+SOLUTION:
+    This problem asks for a subsequence of length `k` from an integer array `nums` such that the sum of the subsequence is maximized.
+    The catch is: the subsequence must preserve the original relative order of elements.
+
+To solve this optimally, we use a combination of sorting and indexing.
+
+1)  Associate Each Number with Its Original Index
+    Map each element to a tuple: [value, original index]. This helps track the original order even after sorting.
+
+2)  Sort by Value to Get the Largest Elements
+    Sort the array of tuples in descending order by value. This brings the highest `k` values to the top.
+
+3)  Select the Top-K Elements
+    Take the first `k` elements from the sorted list. These are the largest values that will make up the maximum-sum subsequence.
+
+4)  Sort the Selected Elements by Original Index
+    To maintain the original order (as required by a valid subsequence), sort the selected `k` items by their original index.
+
+5)  Extract and Return the Values
+    Finally, map the sorted `[value, index]` pairs back to just the `value`, which gives the result.
+
+TIME-COMPLEXITY: O(n log n) — due to sorting steps (full sort + sort on top-k).
+SPACE-COMPLEXITY: O(n) — for the extra array storing value/index pairs.
