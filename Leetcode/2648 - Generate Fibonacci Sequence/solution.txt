@@ -1,0 +1,29 @@
+SOLUTION:
+    We need to implement a generator function that yields values from the Fibonacci sequence each time `.next()` is called.
+    The Fibonacci sequence is defined as:
+    F(0) = 0
+    F(1) = 1
+    F(n) = F(n-1) + F(n-2) for n > 1
+
+This is a perfect use case for a generator because:
+  - It maintains internal state between calls
+  - It can produce an infinite sequence lazily (on-demand)
+
+1)  Initialize First Two Numbers
+    Start with:
+        prev2 = 0  (F(0))
+        prev1 = 1  (F(1))
+
+2)  Use a While Loop
+    In a `while (true)` loop:
+        - Yield `prev2` (the current Fibonacci number)
+        - Update `prev2` and `prev1` to next values:
+            temp = prev2
+            prev2 = prev1
+            prev1 = temp + prev1
+
+3)  Allow Infinite `.next()` Calls
+    Since the problem doesn't limit the number of calls, we allow the generator to be infinite.
+
+TIME-COMPLEXITY PER CALL: O(1) — Constant time to compute the next number
+SPACE-COMPLEXITY: O(1) — Only two variables are maintained
