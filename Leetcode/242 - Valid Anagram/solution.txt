@@ -1,0 +1,20 @@
+SOLUTION:
+    An anagram is a rearrangement of characters of a string, meaning both strings must:
+    - Have the same length
+    - Contain the same characters with the same frequency
+
+1)  Early Length Check
+    If `s.length !== t.length`, they cannot be anagrams. Return False immediately.
+
+2)  Count Character Frequencies
+    Use a hash map or dictionary to count the frequency of each character in `s`.
+
+3)  Validate Against Second String
+    Iterate over string `t`, and decrement the corresponding frequency from the map.
+    If a character in `t` is not found in the map or frequency goes below 0, return False.
+
+4)  Return True
+    If all counts are matched correctly and no early return occurred, return True.
+
+TIME-COMPLEXITY: O(n) — where n is the length of the strings.
+SPACE-COMPLEXITY: O(1) — since the number of possible characters (26 lowercase letters) is constant.
