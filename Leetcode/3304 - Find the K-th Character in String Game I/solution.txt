@@ -1,0 +1,31 @@
+SOLUTION:
+    The string is defined recursively:
+    S₀ = "a"
+    S₁ = S₀ + shift(S₀)
+    S₂ = S₁ + shift(S₁)
+    Sₙ = Sₙ₋₁ + shift(Sₙ₋₁)
+
+    Where shift(s) shifts each character by +1 alphabetically:
+    - shift("a") = "b"
+    - shift("ab") = "bc"
+    - shift("abc") = "bcd"
+
+    Each level doubles the string length:
+    - S₀ = 1
+    - S₁ = 2
+    - S₂ = 4
+    - Sₙ = 2ⁿ
+
+    This grows too fast to construct explicitly for large k.
+    Hence, we use a recursive approach that:
+    - Finds which level `k` falls into
+    - Recursively determines the character
+    - If in second half, shift the character by +1
+
+1)  Find the smallest level such that length ≥ k
+2)  If k is in the first half: recurse into k
+3)  If k is in the second half: recurse into (k - halfLength) and shift result
+4)  Base Case: k == 1 → return 'a'
+
+TIME-COMPLEXITY: O(log k) — each level halves the problem space
+SPACE-COMPLEXITY: O(log k) — recursion stack
