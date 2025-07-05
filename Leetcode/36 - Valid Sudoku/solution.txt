@@ -1,0 +1,26 @@
+SOLUTION:
+    To validate a 9×9 Sudoku board, we must ensure:
+    - Each row contains unique digits (excluding '.')
+    - Each column contains unique digits
+    - Each 3×3 sub-box contains unique digits
+
+Approach:
+We iterate through the board three times:
+1) For each row:
+    - Use a Set to track seen digits
+    - If a duplicate is found, return False
+
+2) For each column:
+    - Use a Set to track seen digits
+    - If a duplicate is found, return False
+
+3) For each 3×3 box:
+    - Identify the starting row and column using k:
+        row = (3 * k) % 9
+        col = Math.floor(k / 3) * 3
+    - Check all 9 cells in the 3×3 sub-box for duplicates
+
+If all checks pass, return True.
+
+TIME-COMPLEXITY: O(1) — Board is fixed 9×9  
+SPACE-COMPLEXITY: O(1) — Sets store at most 9 values each pass
