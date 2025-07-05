@@ -1,0 +1,19 @@
+SOLUTION:
+    We are given an integer array. A "lucky number" is defined as a number whose value is equal to its frequency in the array.
+    We need to find the largest lucky number, or return `-1` if none exist.
+
+1)  Count Frequencies
+    - Traverse the array and record the frequency of each element using a hash map.
+
+2)  Identify Lucky Numbers
+    - Loop through each key in the frequency map.
+    - If the key (converted to number) equals its frequency, it's a lucky number.
+
+3)  Track the Maximum Lucky Number
+    - Update a result variable `res` only if the current lucky number is larger.
+
+4)  Return the Result
+    - If no lucky numbers were found, return `-1`.
+
+TIME-COMPLEXITY: O(n) - One pass to count frequencies and One pass to find the max lucky number
+SPACE-COMPLEXITY: O(n) - At most 500 keys (given arr[i] ∈ [1, 500])
