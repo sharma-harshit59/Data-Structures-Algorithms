@@ -1,0 +1,22 @@
+SOLUTION:
+    We are given an unsorted array of integers and need to return the length of the longest consecutive elements sequence.
+    The naive approach checks in both directions (left and right) and may revisit elements, leading to unnecessary computation and use of a 'visited' set.
+
+
+1) Use a Set for Fast Lookup
+   - Insert all elements into a Set (O(n) time).
+   - Set allows O(1) average-time lookups for checking sequence continuity.
+
+2) Only Expand from the Start of Sequences
+   - For each number in the set, check if it’s the start of a sequence:
+     i.e., if (num - 1) is **not** in the set.
+   - This ensures each sequence is only counted once.
+
+3) Count Consecutive Numbers Forward
+   - From each valid start, count forward while (num + 1) is in the set.
+   - Track the maximum length seen so far.
+
+4) Return the Result
+
+TIME-COMPLEXITY: O(n)  
+SPACE-COMPLEXITY: O(n)
