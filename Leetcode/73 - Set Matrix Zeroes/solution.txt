@@ -1,0 +1,20 @@
+SOLUTION:
+    To set matrix rows and columns to zero in-place based on existing 0s, we need to avoid using extra space.
+    Key idea: Use the first row and first column of the matrix as **marker arrays** to record which rows and columns should be zeroed.
+
+1) Detect if the first row or column itself needs to be zeroed:
+   - Store flags `setFirstRow` and `setFirstCol`.
+
+2) Traverse the matrix starting from (1,1) to (m-1,n-1):
+   - If matrix[i][j] is 0, mark its row and column by:
+       matrix[i][0] = 0
+       matrix[0][j] = 0
+
+3) Second pass: Use the markers to zero the appropriate cells.
+
+4) Final step: If `setFirstRow` or `setFirstCol` are true, zero the entire first row or column.
+
+This allows us to solve the problem **in-place** with **O(1)** additional space.
+
+TIME-COMPLEXITY: O(m × n)  
+SPACE-COMPLEXITY: O(1)
