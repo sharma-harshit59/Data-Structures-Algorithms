@@ -1,0 +1,17 @@
+SOLUTION:
+To determine if a number is a "happy number", we repeatedly replace the number with the sum of the squares of its digits.
+
+If this process eventually leads to 1, the number is happy.  
+If it loops endlessly without reaching 1, it's not a happy number.
+
+Approach:
+1) Use a helper function to compute sum of digit squares.
+2) Track seen numbers using a Set to detect cycles.
+3) If we encounter a repeated number (other than 1), the number is not happy.
+
+Alternatively, Floyd’s Cycle Detection (Tortoise & Hare) can be used for O(1) space.
+
+TIME-COMPLEXITY: O(log n) per digit-square step × constant steps (bounded loop)  
+SPACE-COMPLEXITY:
+  - O(1) with Floyd's
+  - O(k) with Set (k is small, max ~243 possible sums)
