@@ -1,0 +1,17 @@
+SOLUTION:
+We fill the matrix in spiral order using four boundaries:
+  - top, bottom (row bounds)
+  - left, right (column bounds)
+
+At each step, we:
+  1. Move left to right on the top row
+  2. Move top to bottom on the right column
+  3. Move right to left on the bottom row
+  4. Move bottom to top on the left column
+
+After each direction, shrink the respective boundary.
+
+We repeat until top > bottom or left > right.
+
+TIME-COMPLEXITY: O(n²) — We fill each cell once  
+SPACE-COMPLEXITY: O(n²) — Matrix of size n×n is returned
