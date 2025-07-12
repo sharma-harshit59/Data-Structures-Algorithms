@@ -1,0 +1,30 @@
+SOLUTION:
+To rotate an n x n matrix 90 degrees clockwise in-place (without extra space), we use a two-step transformation:
+
+1) Reverse the matrix vertically:
+   - Swap row i with row (n - i - 1) for i in [0, n/2)
+
+2) Transpose the matrix:
+   - Swap matrix[i][j] with matrix[j][i] for i < j
+   - This flips the matrix over its diagonal
+
+This combination results in a clockwise rotation.
+
+Example:
+Original:
+1 2 3
+4 5 6
+7 8 9
+
+After vertical reverse:
+7 8 9
+4 5 6
+1 2 3
+
+After transpose:
+7 4 1
+8 5 2
+9 6 3
+
+TIME-COMPLEXITY: O(n²)
+SPACE-COMPLEXITY: O(1) — in-place, no extra space used
