@@ -1,0 +1,19 @@
+SOLUTION:
+To collect matrix elements in spiral order:
+
+1) Initialize 4 boundary pointers:
+   - top, bottom → row bounds
+   - left, right → column bounds
+
+2) Traverse while top ≤ bottom and left ≤ right:
+   - From left to right on top row
+   - From top to bottom on right column
+   - From right to left on bottom row (if top ≠ bottom)
+   - From bottom to top on left column (if left ≠ right)
+
+3) Shrink the boundaries after each pass
+
+Avoid modifying the matrix directly — no sentinel values or extra space required.
+
+TIME-COMPLEXITY: O(m × n) — each cell visited once  
+SPACE-COMPLEXITY: O(1) — output list only
