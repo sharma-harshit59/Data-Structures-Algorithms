@@ -1,0 +1,18 @@
+SOLUTION:
+We aim to match each player to a trainer such that:
+  - Each player is matched to one trainer.
+  - The trainer's strength is >= the player's strength.
+  - Each trainer can be used at most once.
+
+Approach:
+1) Sort both players and trainers in ascending order.
+2) Use two pointers (one for players, one for trainers).
+3) Iterate:
+    - If the current trainer can train the current player (trainer >= player),
+      we match them and advance both pointers.
+    - Otherwise, try the next stronger trainer.
+
+This greedy strategy ensures the most matches, as it always assigns the weakest eligible trainer to each player.
+
+TIME-COMPLEXITY: O(n log n + m log m) — sorting both arrays  
+SPACE-COMPLEXITY: O(1) — in-place traversal, no extra memory
