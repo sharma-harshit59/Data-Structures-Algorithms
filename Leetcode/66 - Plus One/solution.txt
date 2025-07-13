@@ -1,0 +1,16 @@
+SOLUTION:
+Given an array of digits representing a non-negative integer, add 1 to the number.
+
+We simulate digit-wise addition from the end of the array:
+1) Start with a carry = 1 (since we're adding one).
+2) Traverse from the last digit to the first:
+   - Add the carry to the current digit.
+   - Update the digit and compute new carry.
+   - If carry becomes 0, we can break early.
+
+3) If there is still a carry after the loop (e.g., [9,9] → [0,0] + carry), insert 1 at the beginning.
+
+This avoids converting to/from integer types, and operates in-place for most cases.
+
+TIME-COMPLEXITY: O(n) — we touch each digit once  
+SPACE-COMPLEXITY: O(1) — no extra space (excluding output array resizing)
