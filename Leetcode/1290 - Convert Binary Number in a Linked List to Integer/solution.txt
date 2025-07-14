@@ -1,0 +1,14 @@
+SOLUTION:
+The linked list represents a binary number, with the head as the most significant bit.
+
+To convert it to a decimal:
+1) Initialize an integer `number = 0`
+2) Traverse the list:
+   - Left-shift `number` by 1 (equivalent to multiplying by 2)
+   - Add the current node's value (0 or 1)
+3) Return the final value
+
+This method avoids string/array conversions and uses O(1) space.
+
+TIME-COMPLEXITY: O(n) — one pass through the list  
+SPACE-COMPLEXITY: O(1) — no extra memory used
