@@ -1,0 +1,18 @@
+SOLUTION:
+A word is valid if:
+1) It has at least 3 characters
+2) It contains at least one vowel AND one consonant
+3) All characters are either alphabetic or digits
+
+Approach:
+- Check word length.
+- Loop through each character:
+    - If it’s a letter:
+        - Normalize to lowercase
+        - Check whether it’s a vowel or consonant
+    - If it’s a digit, continue.
+    - Otherwise, return false.
+- Return true only if both vowel and consonant are present.
+
+TIME-COMPLEXITY: O(n) — where n is the length of the word  
+SPACE-COMPLEXITY: O(1) — uses constant extra space
