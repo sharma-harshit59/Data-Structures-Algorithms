@@ -1,0 +1,20 @@
+SOLUTION:
+A subsequence is valid if the parity of the sum of every two consecutive elements is the same.
+
+Recall:
+- (even + even) % 2 = 0
+- (odd + odd) % 2 = 0
+- (even + odd) % 2 = 1
+
+This implies that valid subsequences can be:
+  1. All odd numbers → even+even = even
+  2. All even numbers → odd+odd = even
+  3. Alternating even-odd or odd-even → even+odd = 1
+
+Approach:
+1) Count all odd and even numbers → these give max length for all-even or all-odd subsequence.
+2) Traverse `nums`, and greedily build an alternating-parity subsequence by only selecting numbers whose parity differs from the previous one.
+3) Return the maximum of these three lengths.
+
+TIME-COMPLEXITY: O(n) — single pass  
+SPACE-COMPLEXITY: O(1) — constant space
