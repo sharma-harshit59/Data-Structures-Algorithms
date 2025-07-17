@@ -1,0 +1,23 @@
+function getHint(secret: string, guess: string): string {
+    let bulls: number = 0;
+    const secretMap: Record<string, number> = {};
+    const guessMap: Record<string, number> = {};
+
+    for (let i = 0; i < secret.length; i++) {
+        if (secret[i] === guess[i]) {
+            bulls++;
+        } else {
+            secretMap[secret[i]] = (secretMap[secret[i]] ?? 0) + 1;
+            guessMap[guess[i]] = (guessMap[guess[i]] ?? 0) + 1;
+        }
+    }
+
+    let cows: number = 0;
+    for (const ch in secretMap) {
+        if (guessMap[ch]) {
+            cows += Math.min(secretMap[ch], guessMap[ch]);
+        }
+    }
+
+    return `${bulls}A${cows}B`;
+};

@@ -1,0 +1,18 @@
+SOLUTION:
+We need to return a hint string in the format "xAyB" where:
+- x is the number of bulls (correct digit, correct position)
+- y is the number of cows (correct digit, wrong position)
+
+Approach:
+1) Iterate through both `secret` and `guess`:
+   - If characters match at the same index → it's a bull.
+   - Otherwise, store frequency of mismatched digits in hash maps for both strings.
+
+2) After the iteration:
+   - For each character in `secretMap`, check if it exists in `guessMap`.
+   - Add the minimum of the two counts to the `cows`.
+
+3) Return the result as a formatted string: "bullsA(cows)B".
+
+TIME-COMPLEXITY: O(n) — Single pass for counting, and one pass over fixed digit set (at most 10).
+SPACE-COMPLEXITY: O(1) — Hash maps store at most 10 digits.
