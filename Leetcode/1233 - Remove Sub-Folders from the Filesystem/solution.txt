@@ -1,0 +1,13 @@
+SOLUTION:
+We are given a list of folder paths. A folder is a subfolder of another if the parent folder path is a prefix of it followed by a '/'. We want to remove all subfolders from the list.
+
+Approach:
+1. Sort the folder paths lexicographically. This ensures that a parent folder appears before any of its subfolders.
+2. Initialize an empty result array.
+3. Iterate through each folder:
+   - If the current folder starts with the last folder in the result + '/', it is a subfolder — skip it.
+   - Otherwise, it's a new parent folder — add to result.
+4. Return the result.
+
+TIME-COMPLEXITY: O(N log N) — due to sorting
+SPACE-COMPLEXITY: O(N) — for the result array
