@@ -1,0 +1,36 @@
+SOLUTION: 
+This problem is about finding the maximum profit from buying and selling a single stock. 
+You must buy the stock before you sell it, and only one transaction is allowed.
+
+The key idea is to track the minimum price seen so far as you iterate through the array,
+and at each step, compute the profit if you were to sell at the current price.
+You keep updating the maximum profit whenever a higher one is found.
+
+1) Initialize Variables
+    You define:
+        buy_price – the lowest price encountered so far (best day to buy up to this point).
+        profit – the maximum profit seen so far.
+    Initially:
+        buy_price = prices[0]
+        profit = 0
+
+2) Single-Pass Loop to Find Max Profit
+    Traverse the array of prices:
+        For each price:
+            a) If the current price is lower than buy_price:
+                    Update buy_price to this new lower price.
+                    This represents a better buying opportunity.
+            b) Otherwise:
+                    Calculate the profit = price - buy_price.
+                    Update the profit if this profit is higher than the previous max profit.
+        This ensures you're always comparing the current price to the best buy price seen so far.
+
+3) Why This Works
+    This greedy algorithm keeps track of:
+        - The lowest price (buy_price) so far as the potential buy day.
+        - The maximum difference (profit) between the current price and that buy_price.
+    It guarantees that we only consider valid transactions (buy before sell).
+    Since we only scan the array once and maintain constant space, this is optimal.
+
+TIME-COMPLEXITY: O(n) - We make a single pass through the prices array.
+SPACE-COMPLEXITY: O(1) - Only two variables (`buy_price`, `profit`) are maintained.
