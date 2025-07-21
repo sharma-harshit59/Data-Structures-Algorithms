@@ -1,0 +1,24 @@
+SOLUTION:
+To remove characters so that no three consecutive characters in a string are equal, 
+we must iterate through the string while preserving at most two repeating characters.
+
+Key idea: 
+    Build the result incrementally using a list (or array) to efficiently manage characters.
+    Only append a character if it doesn't form three identical characters in a row.
+
+1) Handle base case:
+   - If the input string has fewer than 3 characters, it's already valid.
+
+2) Initialize a result list with the first two characters of the string.
+
+3) Iterate from index 2 to the end of the string:
+   - For each character `s[i]`, check the last two characters in the result.
+   - If both are equal to `s[i]`, skip it (would make 3 in a row).
+   - Otherwise, append it to the result list.
+
+4) Join the list into a string and return it.
+
+This approach ensures that at most two consecutive characters are ever the same.
+
+TIME-COMPLEXITY: O(n)  
+SPACE-COMPLEXITY: O(n)
