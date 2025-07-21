@@ -1,0 +1,26 @@
+SOLUTION:
+To swap every two adjacent nodes in a linked list without modifying node values, 
+we manipulate pointers to rearrange the actual nodes in-place.
+
+Key idea: Use a dummy node before the head to handle edge cases cleanly, 
+and iterate through the list two nodes at a time, swapping them by reassigning pointers.
+
+1) Create a dummy node that points to the head of the list.
+   - This helps handle changes to the head during the first swap.
+   - Use a `prev` pointer initialized to the dummy node.
+
+2) Iterate through the list as long as two nodes (`head` and `head.next`) exist:
+   - Let `first = head` and `second = head.next`.
+   - Perform the swap by reassigning:
+       first.next = second.next
+       second.next = first
+       prev.next = second
+
+3) Move `prev` to `first`, and `head` to `first.next` to continue swapping the next pair.
+
+4) Return `dummy.next`, which now points to the new head of the swapped list.
+
+This method ensures that nodes are swapped in-place with **constant extra space**.
+
+TIME-COMPLEXITY: O(n)  
+SPACE-COMPLEXITY: O(1)
