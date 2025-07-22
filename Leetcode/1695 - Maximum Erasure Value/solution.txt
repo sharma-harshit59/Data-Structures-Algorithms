@@ -1,0 +1,24 @@
+SOLUTION:
+To find the maximum score of a subarray containing only unique elements, we use the **sliding window** technique along with a **hash set** to track elements in the current window.
+
+Key idea: Maintain a window [low, high] such that all elements inside are unique. If a duplicate is found, shrink the window from the left until the duplicate is removed.
+
+1) Initialize:
+   - Two pointers `low` and `high` at 0 to represent the sliding window.
+   - A set `numSet` to track unique elements.
+   - Two variables `currScore` and `maxScore` to store the current window sum and the maximum score found.
+
+2) Traverse the array using `high` pointer:
+   - If `nums[high]` is **already in the set**:
+     - Shrink the window by moving `low` forward until the duplicate is removed.
+     - While shrinking, remove elements from the set and subtract them from `currScore`.
+   - Else:
+     - Add `nums[high]` to the set and to `currScore`.
+     - Update `maxScore` if `currScore` is greater than current maximum.
+
+3) Repeat until the end of the array is reached.
+
+This approach ensures each element is added and removed at most once from the set, resulting in a linear time solution.
+
+TIME-COMPLEXITY: O(n) - Eaach element is looked up once by high and at most once by low
+SPACE-COMPLEXITY: O(n) - In the worst case, all elements in the array are unique
