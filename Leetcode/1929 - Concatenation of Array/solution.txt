@@ -1,0 +1,18 @@
+SOLUTION:
+To return a new array that is the concatenation of the input array with itself, we directly append each element from the original array to the end of the array.
+
+Key idea: Traverse the array once and append each element to the end of the list to form a repeated sequence.
+
+1) Initialize:
+   - Let `n` be the length of the input array `nums`.
+
+2) Traverse the array from index `0` to `n - 1`:
+   - For each index `i`, append `nums[i]` to the end of the array.
+   - This is safe because we stop before reaching the newly added elements, only iterating over the original portion.
+
+3) Return the modified array which now contains two copies of the original array in order.
+
+This approach modifies the input in-place and avoids using additional space beyond what is required for the final result.
+
+TIME-COMPLEXITY: O(n) - Each of the `n` original elements is appended once.
+SPACE-COMPLEXITY: O(1) extra - We only use constant extra space; however, the result array grows to 2n in size, which is expected.
