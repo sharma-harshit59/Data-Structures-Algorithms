@@ -1,15 +1,4 @@
-function subsetXORSum(nums: number[]): number {
-
-    function getSubsetXORSum(currentIndex: number, XORSum: number) {
-        if (currentIndex == nums.length) {
-            subsetXorSum += XORSum;
-        } else {
-            getSubsetXORSum((currentIndex + 1), XORSum ^ nums[currentIndex]);
-            getSubsetXORSum((currentIndex + 1), XORSum);
-        }
-    }
-
-    let subsetXorSum: number = 0;
-    getSubsetXORSum(0, 0);
-    return subsetXorSum;
+function subsetXORSum(nums: number[], index: number = 0, currXOR: number = 0): number {
+    if (index === nums.length) return currXOR;
+    return subsetXORSum(nums, index + 1, currXOR) + subsetXORSum(nums, index + 1, currXOR ^ nums[index]);
 };

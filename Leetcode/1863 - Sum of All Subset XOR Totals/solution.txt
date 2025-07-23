@@ -1,0 +1,25 @@
+SOLUTION:
+To calculate the sum of XOR totals for all subsets, we use a **depth-first search (DFS)** approach to explore all subset combinations.
+
+Key idea: At each element, make a decision — either include it in the current subset (and XOR it with the current value), or skip it. Use recursion to explore both paths, summing the results.
+
+1) Initialize a recursive function `dfs(index, currXOR)`:
+   - `index`: current position in `nums`
+   - `currXOR`: running XOR value of the current subset
+
+2) Base Case:
+   - If `index == len(nums)` (i.e., we've considered all elements):
+     - Return `currXOR` as the result for that subset.
+
+3) Recursive Case:
+   - Call the function twice:
+     - Once excluding the current element: `dfs(index + 1, currXOR)`
+     - Once including the current element in the subset XOR: `dfs(index + 1, currXOR ^ nums[index])`
+
+4) Total Result:
+   - Sum the results of both recursive calls to accumulate the XOR totals from all subsets.
+
+This approach explores all subsets and accumulates their XOR values correctly.
+
+TIME-COMPLEXITY: O(2^n) - Each element has 2 choices: include or exclude.
+SPACE-COMPLEXITY: O(n) - Due to recursion depth in the call stack.
