@@ -1,0 +1,12 @@
+We are given an array `cost` where cost[i] is the cost of stepping on the ith stair.
+You can start at index 0 or 1 and move 1 or 2 steps at a time.
+
+Approach:
+1. Use two variables `prev2` and `prev1` to store the minimum cost to reach the (i-2) and (i-1) steps respectively.
+2. For each i from 2 to n-1:
+   - Compute the cost to reach step i using: cost[i] + min(prev1, prev2)
+   - Update prev2 and prev1 accordingly.
+3. Finally, return min(prev1, prev2) — the cost of reaching the top from either of the last two steps.
+
+TIME-COMPLEXITY: O(N)
+SPACE-COMPLEXITY: O(1) — only two variables used
