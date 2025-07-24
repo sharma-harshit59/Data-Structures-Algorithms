@@ -1,0 +1,18 @@
+SOLUTION:
+We are given `n` people and a trust relationship list `trust`, where each element [a, b] means person `a` trusts person `b`. We need to identify the "town judge" who:
+  1. Trusts nobody.
+  2. Is trusted by everyone else (i.e., `n - 1` people).
+
+Approach:
+1. Initialize two arrays:
+   - `trusted[i]`: Number of people who trust person `i`.
+   - `trusts[i]`: Number of people person `i` trusts.
+2. Iterate over the trust pairs [a, b]:
+   - Increment `trusts[a]` since person `a` trusts someone.
+   - Increment `trusted[b]` since person `b` is trusted by `a`.
+3. Scan from person 1 to n:
+   - If `trusted[i] == n - 1` and `trusts[i] == 0`, return `i` as the judge.
+4. If no such person exists, return -1.
+
+TIME-COMPLEXITY: O(N + T), where N is the number of people and T is the size of the trust array  
+SPACE-COMPLEXITY: O(N) — for the two arrays `trusted` and `trusts`
