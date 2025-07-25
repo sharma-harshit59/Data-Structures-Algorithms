@@ -1,0 +1,27 @@
+SOLUTION:
+As the problem statement allows us to delete elements, we can delete:
+- Negative elements (if the array has atleast 1 positive element)
+- Duplicate elements
+Once we have deleted these elements, the problem boils down to choosing the subsequence with teh largest sum.
+We want to select a subsequence (not necessarily contiguous) from the array `nums` such that:
+- All elements are unique.
+- The sum is maximized.
+
+Observation:
+- Duplicates reduce the effectiveness of the sum since we can only take one copy to preserve uniqueness.
+- Negative numbers reduce the total sum and should be avoided.
+- Zero doesn't help increase the sum, so it can also be skipped unless it's the only option.
+
+Approach:
+1) Sort the array in descending order so that we consider the largest numbers first.
+2) If the largest number is ≤ 0, return it — since we must return at least one element, the best we can do is the maximum among negatives or zero.
+3) Iterate over the sorted array and:
+   - Skip any duplicate values to ensure uniqueness.
+   - Stop when non-positive numbers are reached.
+   - Sum up the positive, unique elements.
+4) Return the total sum.
+
+This greedy approach ensures we always include the largest possible unique values while excluding non-positive or repeated elements.
+
+TIME-COMPLEXITY: O(n log n) — due to sorting
+SPACE-COMPLEXITY: O(n) — for the set used to track uniqueness
