@@ -1,0 +1,30 @@
+SOLUTION:  
+To count the number of hills and valleys in an array, we need to identify points where the current element is greater than (hill) or smaller than (valley) its closest non-equal neighbors on both sides.
+
+Key idea:  
+    Consecutive duplicate elements belong to the same hill or valley.
+    We skip over these duplicates and only compare the nearest distinct neighbors.
+
+1) Initialize:
+   - A counter to keep track of hills and valleys.
+   - A pointer `i` starting at index 1 (since we need both left and right neighbors).
+
+2) While `i < n - 1`:
+   - Let `j = i - 1` (left neighbor), `k = i + 1` (right neighbor).
+   - Skip duplicates by moving `j` left until `nums[j] != nums[i]` or `j == 0`.
+   - Skip duplicates by moving `k` right until `nums[k] != nums[i]` or `k == n - 1`.
+
+3) After finding valid `j` and `k`:
+   - If both neighbors exist:
+     - If `nums[i] > nums[j]` and `nums[i] > nums[k]`, it's a hill.
+     - If `nums[i] < nums[j]` and `nums[i] < nums[k]`, it's a valley.
+     - In both cases, increment the counter.
+
+4) Move `i` to `k` to skip duplicate plateaus and continue the loop.
+
+Return the final counter.
+
+This approach ensures we only count each hill or valley once, even across repeated values.
+
+TIME-COMPLEXITY: O(n)  
+SPACE-COMPLEXITY: O(1)
