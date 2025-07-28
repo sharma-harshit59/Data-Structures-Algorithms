@@ -1,0 +1,33 @@
+SOLUTION:  
+To count the number of non-empty subsets of `nums` that produce the maximum possible bitwise OR, we need to:
+
+Key idea:  
+    The maximum bitwise OR is the OR of all elements.
+    We generate all subsets and count how many of them give this OR result.
+
+1) Compute the maximum possible OR:
+   - Initialize `maxOR = 0`.
+   - For each element in `nums`, update `maxOR |= num`.
+   - This gives the bitwise OR of the entire array — the maximum possible.
+
+2) Use backtracking (DFS) to explore all subsets:
+   - At each index `i`, we have two choices:
+     - Include `nums[i]` in the current subset OR.
+     - Exclude `nums[i]` and move on.
+   - Recurse to the next index for both choices.
+
+3) Base case (when index == nums.length):
+   - If the OR of the current subset (`currOR`) equals `maxOR`, count it.
+   - Return 1 if it matches, else 0.
+
+4) Accumulate the count:
+   - Sum the results of both include and exclude recursive calls.
+   - This gives the total number of subsets that match the max OR.
+
+Important:
+- The empty subset will never contribute to the count (its OR is 0), so we don’t need special handling to exclude it — it naturally doesn’t match `maxOR`.
+
+This approach ensures we count all distinct subsets whose OR equals the maximum, including those with duplicate values but different indices (as subsets are based on element positions).
+
+TIME-COMPLEXITY: O(2ⁿ)  
+SPACE-COMPLEXITY: O(n) — for the recursion stack
