@@ -1,0 +1,21 @@
+SOLUTION:
+To reverse a singly linked list, we iteratively reverse the direction of each node’s `next` pointer.
+
+We traverse the list once, and for each node:
+- Keep track of the next node (so we don't lose access).
+- Redirect the current node’s `next` to the previous node.
+- Move forward in the list.
+
+Approach:
+1) Initialize `reversedList` (or `prev`) as `null`.
+2) Iterate through the list with a pointer `head` (or `curr`).
+3) For each node:
+    - Store `next` node.
+    - Set `head.next` to `reversedList`.
+    - Move `reversedList` to `head`.
+    - Advance `head` to `next`.
+
+This continues until all nodes are reversed.
+
+TIME-COMPLEXITY: O(n) — each node is visited once  
+SPACE-COMPLEXITY: O(1) — in-place reversal, no extra memory used
