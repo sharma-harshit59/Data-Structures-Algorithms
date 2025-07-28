@@ -1,0 +1,35 @@
+SOLUTION:  
+To compute the number of 1s in the binary representation for every number from `0` to `n`, we use a dynamic programming approach that builds upon previous results and tracks the most recent power of 2.
+
+Key idea:  
+    Every number `i` can be expressed as:
+        i = 2^k + remainder  
+    where `2^k` is the largest power of two ≤ i.
+
+    The number of set bits in `i` is:
+        setBits(i) = 1 (for 2^k) + setBits(remainder)
+
+1) Initialize the result array:
+   - Create an array `setBitCount` of size `n + 1` initialized to 0.
+   - `setBitCount[i]` will store the number of 1s in the binary form of `i`.
+
+2) Track the current power of two:
+   - Initialize `exp = 1`.
+   - Iterate `i` from 1 to `n`.
+
+3) For each `i`:
+   - If `i` is exactly a power of two (`i == exp`):
+     - Its binary has exactly one 1. Set `setBitCount[i] = 1`.
+     - Update `exp *= 2` to point to the next power of two.
+   - Else:
+     - The number can be written as: `i = exp/2 + remainder`.
+     - So, `setBitCount[i] = setBitCount[exp / 2] + setBitCount[i - (exp / 2)]`.
+     - This builds the result from two smaller subproblems.
+
+4) Return the filled array:
+   - After the loop, `setBitCount` contains the number of 1s for all numbers from 0 to `n`.
+
+This method uses precomputed results and tracks powers of two to avoid redundant computation — no need for explicit bit manipulation or converting numbers to binary.
+
+TIME-COMPLEXITY: O(n)  
+SPACE-COMPLEXITY: O(n) — for storing the result array
