@@ -1,0 +1,34 @@
+SOLUTION:  
+This problem involves merging two sorted arrays, `nums1` and `nums2`, into a single sorted array in-place.  
+The key constraint is that the merged result must be stored in `nums1`, which has extra space at the end to accommodate all elements.
+
+To achieve this with O(m + n) time and O(1) space, we use a reverse two-pointer approach — merging from the back of the arrays.
+
+1) Initialize Three Pointers  
+   To avoid overwriting valid values in `nums1`, we start merging from the end:
+       - `i` points to the last initialized element in `nums1` (index `m - 1`)
+       - `j` points to the last element in `nums2` (index `n - 1`)
+       - `k` points to the last index in `nums1` (index `m + n - 1`)
+
+2) Merge from the End (Reverse Order)  
+   While both `i` and `j` are within bounds:
+       - Compare `nums1[i]` and `nums2[j]`
+       - Place the larger value at position `k` in `nums1`
+       - Move the corresponding pointer (`i` or `j`) one step back
+       - Decrement `k` after each placement
+
+   This guarantees that the largest values are placed correctly without disrupting earlier values in `nums1`.
+
+3) Handle Remaining Elements in nums2  
+   After the main loop:
+       - If `j >= 0`, copy remaining elements from `nums2` to `nums1`
+       - We don't need to handle leftovers in `nums1` because they are already in place
+
+   This ensures all values from `nums2` are merged correctly.
+
+WHY THIS WORKS:  
+By merging from the end, we prevent overwriting elements in `nums1` that haven't been compared yet.  
+This in-place strategy avoids using extra space while maintaining the sorted order.
+
+TIME-COMPLEXITY: O(m + n) — each element from both arrays is processed once  
+SPACE-COMPLEXITY: O(1) — only three integer pointers are used
