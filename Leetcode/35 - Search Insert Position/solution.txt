@@ -1,36 +1,32 @@
-SOLUTION:
-This problem is a variation of Binary Search.
-Instead of just finding the target, you must also determine where the target should be inserted in order to maintain the sorted order if it isn’t found.
-Since the array is sorted and all values are distinct, a binary search is the most efficient way to achieve the required O(log n) runtime.
+SOLUTION:  
+This problem is a variation of Binary Search.  
+Instead of only checking whether a target exists, you're also required to determine the index where it should be inserted in order to maintain the sorted order.
 
-1)  Initialize the Search Range
-    Two pointers mark the search space:
-        One at the start of the array.
-        One at the end.
-    You also define a variable to keep track of the midpoint index, which will be recalculated during each loop iteration.
+Since the input array is sorted and contains distinct values, Binary Search is ideal — enabling an efficient O(log n) runtime.
 
-2)  Binary Search Loop
-    As long as the start pointer is less than or equal to the end pointer:
-        Compute the midpoint index.
-        Compare the middle element with the target.
-        Three possibilities:
-            If the middle element equals the target, return the midpoint — you've found the target.
-            If the target is greater than the middle element, the target must be in the right half, so move the start pointer past the middle.
-            If the target is less, then move the end pointer to the left half by updating it to just before the middle.
-    This narrowing continues until the search space collapses (i.e., the start index surpasses the end index), indicating the target is not present in the array.
+1) Initialize the Search Range  
+   Define two pointers to represent the current search bounds:
+       - `firstIdx` starting at the beginning of the array.
+       - `lastIdx` at the end of the array.
+   Also define `midIdx` to track the midpoint of the current search range, which is recalculated each iteration.
 
-3)  Why the Final midIdx Determines Insertion Point?
-    When the target is not found, the loop exits. At this point, you're left with a narrowed-down position where the target would fit in the array.
-    Here’s how to understand why the final value of midIdx gives you that:
-        The loop ends immediately after the valid search space is exhausted — meaning the last checked midIdx was the midpoint of the last valid subrange.
-        Depending on whether the last midIdx element was less than or greater than the target, the insertion point will either be:
-            Just after midIdx (if the mid value was less than the target).
-            Exactly at midIdx (if the mid value was greater than or equal to the target).
-        Since you're always halving the array, the last midpoint effectively acts as a pivot around which the final insertion point lies.
-    This is why the code returns:
-        midIdx + 1 if the mid value is smaller than the target.
-        Otherwise, midIdx.
-    This logic ensures the target will be placed in the correct position to maintain the array’s sorted order.
+2) Binary Search Loop  
+   While the search space is valid (i.e., `firstIdx <= lastIdx`):
+       - Compute `midIdx` as the average of `firstIdx` and `lastIdx`.
+       - Compare the middle element (`nums[midIdx]`) with the target:
+           a) If equal, return `midIdx` — the target is found.
+           b) If the target is greater, discard the left half including `midIdx` by setting `firstIdx = midIdx + 1`.
+           c) If the target is smaller, discard the right half by setting `lastIdx = midIdx - 1`.
 
-TIME-COMPLEXITY: O(log n), since each iteration halves the search space.
-SPACE-COMPLEXITY: O(1), using only constant space.
+   The loop ends when `firstIdx > lastIdx`, meaning the target isn't found and must be inserted at the correct position.
+
+3) Why the Final midIdx Determines Insertion Point  
+   Once the loop terminates:
+       - The last `midIdx` is the midpoint of the final narrowed subrange.
+       - If `nums[midIdx] < target`, the correct insertion point is just after `midIdx` → `midIdx + 1`.
+       - Otherwise, the correct insertion point is exactly at `midIdx`.
+
+   This approach guarantees the correct position for the target, preserving the sorted property of the array.
+
+TIME-COMPLEXITY: O(log n) — each loop iteration halves the search space.
+SPACE-COMPLEXITY: O(1) — only three integer variables are used.
