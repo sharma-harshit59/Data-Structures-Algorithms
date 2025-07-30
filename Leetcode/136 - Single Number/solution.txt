@@ -1,0 +1,35 @@
+SOLUTION:  
+This problem is about finding the one unique element in an array where every other element appears exactly twice.
+
+The key insight is to use the bitwise XOR operation. XOR has the properties that:
+- `a ^ a = 0` (any number XORed with itself is zero)
+- `a ^ 0 = a` (any number XORed with 0 is the number itself)
+- XOR is commutative and associative, so order doesn't matter.
+
+Thus, when you XOR all the elements together:
+- Pairs of identical numbers cancel out to 0.
+- The remaining single number XORed with 0 results in the number itself.
+
+1) Initialize Variable
+    Define a variable:
+        res – to hold the result of XOR-ing all elements.
+    Initially:
+        res = 0
+
+2) Single-Pass Loop to XOR All Numbers
+    Traverse the array:
+        For each number `num` in the array:
+            res = res XOR num (i.e., res ^= num)
+    Since identical numbers cancel out, only the single non-repeated number will remain in `res`.
+
+3) Why This Works
+    - Every number that appears twice will cancel itself out via XOR.
+    - Only the unique number remains after all XOR operations.
+    - This avoids the need for extra space or sorting.
+
+    This approach is:
+        - Linear in time (one pass through the array)
+        - Constant in space (only one variable is used)
+
+TIME-COMPLEXITY: O(n) - We traverse the array once.
+SPACE-COMPLEXITY: O(1) - Only one variable (`res`) is maintained.
