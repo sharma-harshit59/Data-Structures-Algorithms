@@ -1,0 +1,28 @@
+SOLUTION:  
+This problem involves generating the first `numRows` of **Pascal's Triangle**, where each number is the sum of the two numbers directly above it.
+
+Pascal's Triangle follows a simple pattern:
+- The first and last element of each row is always `1`.
+- Each inner element at position `j` in row `i` is the sum of the two elements above it:  
+  `triangle[i][j] = triangle[i-1][j-1] + triangle[i-1][j]`
+
+To build this efficiently, we use a loop to construct each row based on the previous one.
+
+1) Initialize Triangle  
+   - Create a 2D array `triangle` with `numRows` rows.
+   - Each row `i` will have `i + 1` elements.
+
+2) Fill Each Row  
+   - Set the first and last elements of the row to `1`.
+   - For `j` from `1` to `i - 1`, fill in the value using:
+     `triangle[i][j] = triangle[i-1][j-1] + triangle[i-1][j]`
+
+   We loop from the top to the bottom of the triangle, building each row using values from the previous row.
+
+WHY THIS WORKS:  
+Each row depends only on the values from the row immediately above it.  
+By starting from the top and iteratively building rows, we guarantee that all required values are available when needed.  
+This avoids recursion or redundant computations.
+
+TIME-COMPLEXITY: O(n²) — Each row has up to `n` elements, and we compute each value once  
+SPACE-COMPLEXITY: O(n²) — We store the entire triangle of size `numRows × numRows`
