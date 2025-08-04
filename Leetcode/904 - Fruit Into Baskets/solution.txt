@@ -1,0 +1,16 @@
+SOLUTION:
+We are given an array `fruits` where fruits[i] is the type of fruit the i-th tree produces.
+We can start at any tree and collect exactly one fruit per tree moving right, using only 2 baskets (each holding only one fruit type).
+
+1. Use a sliding window approach with two pointers: `low` and `high`.
+2. Use a hash map `fruitCount` to track how many of each fruit type are in the current window.
+3. Expand the window by moving `high`:
+   - Add fruits[high] to `fruitCount`.
+4. If the map size exceeds 2 (i.e., more than two fruit types):
+   - Shrink the window from the left (`low`) until only 2 fruit types remain.
+   - While shrinking, decrement count of fruits[low], and remove the key if its count becomes 0.
+5. After each valid window expansion, update `maxFruits` with the window size (`high - low + 1`).
+6. Return `maxFruits` — the maximum length of a subarray with at most 2 distinct fruit types.
+
+TIME-COMPLEXITY: O(N)
+SPACE-COMPLEXITY: O(1) — since the map holds at most 3 keys, which is constant
