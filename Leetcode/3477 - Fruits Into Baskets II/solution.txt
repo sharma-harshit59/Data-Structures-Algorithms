@@ -1,0 +1,19 @@
+SOLUTION:
+We are given two arrays:
+- `fruits[i]`: quantity of the i-th type of fruit.
+- `baskets[j]`: capacity of the j-th basket.
+
+A fruit can only be placed in the leftmost available basket that has capacity ≥ fruit quantity.
+Each basket can hold only one fruit type, and once used, becomes unavailable.
+
+Approach:
+1) Initialize a counter `count` to track the number of unplaced fruits.
+2) Iterate through the `fruits` array from left to right.
+3) For each fruit, iterate through the `baskets` array (also from left to right).
+    - Find the first basket whose capacity is ≥ current fruit.
+    - If found, set that basket’s capacity to 0 (mark as used), and mark the fruit as placed.
+    - If no such basket is found, increment `count`.
+4) Return the final value of `count`.
+
+TIME-COMPLEXITY: O(n²) — nested loop: for each fruit, scan all baskets  
+SPACE-COMPLEXITY: O(1) — constant extra space (modifies baskets in-place)
