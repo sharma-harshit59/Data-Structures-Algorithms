@@ -1,0 +1,26 @@
+SOLUTION:
+To find the Lowest Common Ancestor (LCA) of two nodes `p` and `q` in a Binary Search Tree (BST), we use the property that all left children are smaller and all right children are larger than the root.
+
+Key idea: 
+- The LCA is the first node in the path from the root where the paths to `p` and `q` split. This happens when:
+  - One of the nodes is on the left and the other is on the right.
+  - Or one of them is equal to the current node.
+
+Steps:
+
+1) Start at the root of the BST.
+
+2) Loop until the current node is `None`:
+   - If both `p` and `q` values are less than current node’s value:
+     - Move to the left child (both nodes lie in the left subtree).
+   - Else if both `p` and `q` values are greater than current node’s value:
+     - Move to the right child (both nodes lie in the right subtree).
+   - Else:
+     - The current node is the Lowest Common Ancestor (split point found or match with `p` or `q`).
+
+3) Return the current node when found, or `None` if tree is empty.
+
+This approach works efficiently due to the BST’s sorted structure and avoids unnecessary traversal.
+
+TIME-COMPLEXITY: O(h) — where `h` is the height of the BST (log n for balanced, up to n for skewed).
+SPACE-COMPLEXITY: O(1) — since the solution is iterative and uses no extra space.
