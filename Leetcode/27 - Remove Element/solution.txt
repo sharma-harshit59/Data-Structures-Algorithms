@@ -1,0 +1,29 @@
+SOLUTION:
+To remove all occurrences of a given value from an array in-place without preserving the order,  
+we can use a two-pointer approach: one pointer (`low`) scans from the start, and another pointer (`high`) scans from the end.
+
+Key idea:  
+Whenever we find the target value at `low`, we overwrite it with the element at `high` and shrink `high`.  
+We only increment `low` when the current element is not the target value, ensuring every position is checked.
+
+1) Initialize two pointers:
+   - `low = 0` (start of array)
+   - `high = nums.length - 1` (end of array)
+
+2) While `low <= high`:
+   - If `nums[low] == val`:
+       - Overwrite `nums[low]` with `nums[high]`.
+       - Decrement `high` (since the last element is now considered processed).
+       - Do not increment `low` because the new value at `low` still needs checking.
+   - Else:
+       - Increment `low` to move forward.
+
+3) When the loop ends, `low` will be the count of elements not equal to `val` (`k`).
+
+4) Return `low` as the number of valid elements.
+
+This approach works without preserving the order of elements, as allowed by the problem,  
+and avoids extra passes through the array.
+
+TIME-COMPLEXITY: O(n) — each element is processed at most once.  
+SPACE-COMPLEXITY: O(1) — in-place, constant extra space.
