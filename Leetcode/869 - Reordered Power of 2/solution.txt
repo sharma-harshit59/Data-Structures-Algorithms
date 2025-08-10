@@ -1,0 +1,13 @@
+SOLUTION:
+We are given an integer n.
+We can reorder its digits in any order (including the original) but the number cannot start with 0. 
+We need to determine if some reordering of n's digits can form a power of two.
+
+1. Convert n to a string and sort its digits to form `strNum`.
+2. Iterate through all powers of two from 1 up to 2^30 (≤ 1e9):
+   - Convert the current power of two to a string, sort its digits, and store in `stri`.
+   - If `stri` matches `strNum`, return true — a permutation of n's digits forms a power of two.
+3. If no match is found after checking all powers of two, return false.
+
+TIME-COMPLEXITY: O(30 × k log k) — where k is the number of digits in n (≤ 10), effectively O(1) for given constraints.
+SPACE-COMPLEXITY: O(k) — for storing and sorting the digit strings.
