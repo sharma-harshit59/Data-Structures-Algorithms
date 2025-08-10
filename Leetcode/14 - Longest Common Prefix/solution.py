@@ -1,14 +1,14 @@
-def longestCommonPrefix(self, strs: List[str]) -> str:
-    if len(strs) == 1:
-        return strs[0]
+def get_prefix(a: str, b: str) -> str:
+    length = min(len(a), len(b))
+    i = 0
+    while i < length and a[i] == b[i]:
+        i += 1
+    return a[:i]
 
-    prefix: str = strs[0]
+def longestCommonPrefix(strs: List[str]) -> str:
+    prefix = strs[0]
     for i in range(1, len(strs)):
-        j: int = 0
-        while j < len(prefix) and j < len(strs[i]) and prefix[j] == strs[i][j]:
-            j += 1
-        prefix = prefix[:j]
+        prefix = get_prefix(prefix, strs[i])
         if not prefix:
             break
-
     return prefix

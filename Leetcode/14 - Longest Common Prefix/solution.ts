@@ -1,13 +1,16 @@
-function longestCommonPrefix(strs: string[]): string {
-    if (strs.length === 1) return strs[0];
-
-    let prefix: string = strs[0];
-    for (let i = 1; i < strs.length; i++) {
-        let itr: number = 0;
-        while (itr < prefix.length && itr < strs[i].length && prefix[itr] === strs[i][itr]) itr++;
-        prefix = prefix.slice(0, itr);
-        if (prefix === "") break;
+function getPrefix(a: string, b: string): string {
+    let len = Math.min(a.length, b.length);
+    let i = 0;
+    while (i < len && a[i] === b[i]) {
+        i++;
     }
+    return a.substring(0, i);
+}
 
+function longestCommonPrefix(strs: string[]): string {
+    let prefix = strs[0];
+    for (let i = 1; prefix.length > 0 && i < strs.length; i++) {
+        prefix = getPrefix(prefix, strs[i]);
+    }
     return prefix;
 };
