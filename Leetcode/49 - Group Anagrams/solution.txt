@@ -1,0 +1,29 @@
+SOLUTION:
+To group anagrams together, we use a dictionary where:
+- Key = a canonical form of the word (sorted string)
+- Value = list of words matching that canonical form
+
+Steps:
+1) Initialize an empty dictionary anagrams = {}.
+2) For each string in the input list:
+   - Sort the string to create a key (same for all anagrams).
+   - If the key is not in the dictionary, initialize it with an empty list.
+   - Append the original string to the list at that key.
+3) Return all the lists of values from the dictionary.
+
+This works because all anagrams share the same sorted character sequence.
+
+Example:
+Input: ["eat", "tea", "tan", "ate", "nat", "bat"]
+Processing:
+- "eat" → "aet" → {"aet": ["eat"]}
+- "tea" → "aet" → {"aet": ["eat", "tea"]}
+- "tan" → "ant" → {"aet": ["eat", "tea"], "ant": ["tan"]}
+- "ate" → "aet" → {"aet": ["eat", "tea", "ate"], "ant": ["tan"]}
+- "nat" → "ant" → {"aet": ["eat", "tea", "ate"], "ant": ["tan", "nat"]}
+- "bat" → "abt" → {"aet": ["eat", "tea", "ate"], "ant": ["tan", "nat"], "abt": ["bat"]}
+
+Output: [["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]
+
+TIME-COMPLEXITY: O(n · L log L), where n = number of strings, L = max string length (sorting each string)
+SPACE-COMPLEXITY: O(n · L) for storing keys and grouped anagrams
