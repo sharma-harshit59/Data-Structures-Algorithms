@@ -1,5 +1,5 @@
 def getConcatenation(self, nums: List[int]) -> List[int]:
-    n = len(nums)
-    for i in range(n):
-        nums.append(nums[i])
-    return nums
+    ans = nums[:]
+    for i in range(len(nums)):
+        ans.append(nums[i])
+    return ans

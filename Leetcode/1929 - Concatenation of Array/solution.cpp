@@ -1,7 +1,7 @@
 vector<int> getConcatenation(vector<int>& nums) {
-    int n = nums.size();
-    for (int i = 0; i < n; i++) {
-        nums.push_back(nums[i]);
+    vector<int> ans(nums.begin(), nums.end());
+    for (auto& num: nums) {
+        ans.push_back(num);
     }
-    return nums;
+    return ans;
 }

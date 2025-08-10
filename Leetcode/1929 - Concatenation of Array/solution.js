@@ -1,7 +1,7 @@
 var getConcatenation = function(nums) {
-    let n = nums.length;
-    for (let i = 0; i < n; i++) {
-        nums.push(nums[i]);
+    const ans = [...nums];
+    for (let i = 0; i < nums.length; i++) {
+        ans.push(nums[i]);
     }
-    return nums;
+    return ans;
 };
