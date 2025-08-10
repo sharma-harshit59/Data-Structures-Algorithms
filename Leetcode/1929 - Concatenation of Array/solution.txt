@@ -1,18 +1,17 @@
 SOLUTION:
-To return a new array that is the concatenation of the input array with itself, we directly append each element from the original array to the end of the array.
+To return a new array that is the concatenation of the input array with itself, we first copy all elements of the input array into a new array and then append the same elements again.
 
-Key idea: Traverse the array once and append each element to the end of the list to form a repeated sequence.
+Key idea: Create a separate result array `ans` so the original array remains unchanged, and fill it in two steps.
 
 1) Initialize:
-   - Let `n` be the length of the input array `nums`.
+   - Create a new array `ans` that is a copy of the input array `nums`.
 
-2) Traverse the array from index `0` to `n - 1`:
-   - For each index `i`, append `nums[i]` to the end of the array.
-   - This is safe because we stop before reaching the newly added elements, only iterating over the original portion.
+2) Traverse the input array using a range-based loop:
+   - For each element `num` in `nums`, append `num` to `ans`.
 
-3) Return the modified array which now contains two copies of the original array in order.
+3) Return `ans`, which now contains two copies of the original array in order.
 
-This approach modifies the input in-place and avoids using additional space beyond what is required for the final result.
+This approach avoids modifying the input array and keeps the logic simple by directly using push operations on the new array.
 
-TIME-COMPLEXITY: O(n) - Each of the `n` original elements is appended once.
-SPACE-COMPLEXITY: O(1) extra - We only use constant extra space; however, the result array grows to 2n in size, which is expected.
+TIME-COMPLEXITY: O(n) - We process each of the `n` elements twice: once to copy and once to append.
+SPACE-COMPLEXITY: O(n) extra - We store an additional array `ans` of size `n` initially, which grows to `2n` for the final result.
