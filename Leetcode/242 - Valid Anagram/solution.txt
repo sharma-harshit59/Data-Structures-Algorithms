@@ -4,17 +4,20 @@ SOLUTION:
     - Contain the same characters with the same frequency
 
 1)  Early Length Check
-    If `s.length !== t.length`, they cannot be anagrams. Return False immediately.
+    If `len(s) != len(t)`, they cannot be anagrams. Return False immediately.
 
-2)  Count Character Frequencies
-    Use a hash map or dictionary to count the frequency of each character in `s`.
+2)  Count and Balance Frequencies Simultaneously
+    Initialize a dictionary `char_count` to store character frequencies.
+    Traverse both strings in a single loop:
+        - Increment the count for `s[i]`.
+        - Decrement the count for `t[i]`.
 
-3)  Validate Against Second String
-    Iterate over string `t`, and decrement the corresponding frequency from the map.
-    If a character in `t` is not found in the map or frequency goes below 0, return False.
+3)  Verify All Counts
+    After processing both strings, iterate through the values in `char_count`.
+    If any value is not zero, the strings are not anagrams. Return False.
 
 4)  Return True
-    If all counts are matched correctly and no early return occurred, return True.
+    If all counts are zero, the strings contain the same characters in the same frequency and are anagrams.
 
 TIME-COMPLEXITY: O(n) — where n is the length of the strings.
-SPACE-COMPLEXITY: O(1) — since the number of possible characters (26 lowercase letters) is constant.
+SPACE-COMPLEXITY: O(k) — where k is the number of unique characters in the strings (constant if the character set is fixed).

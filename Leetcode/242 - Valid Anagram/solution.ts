@@ -2,14 +2,15 @@ function isAnagram(s: string, t: string): boolean {
     if (s.length !== t.length) return false;
 
     const charCount: Record<string, number> = {};
-
-    for (const char of s) {
-        charCount[char] = (charCount[char] ?? 0) + 1;
+    for (let i = 0; i < s.length; i++) {
+        charCount[s[i]] = (charCount[s[i]] ?? 0) + 1;
+        charCount[t[i]] = (charCount[t[i]] ?? 0) - 1;
     }
 
-    for (const char of t) {
-        if (!charCount[char]) return false;
-        charCount[char]--;
+    for (const count of Object.values(charCount)) {
+        if (count != 0) {
+            return false;
+        }
     }
 
     return true;

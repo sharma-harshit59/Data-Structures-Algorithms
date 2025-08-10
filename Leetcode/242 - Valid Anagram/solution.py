@@ -4,12 +4,12 @@ def isAnagram(self, s: str, t: str) -> bool:
 
     char_count: Dict[str, int] = {}
 
-    for char in s:
-        char_count[char] = char_count.get(char, 0) + 1
+    for i in range(len(s)):
+        char_count[s[i]] = char_count.get(s[i], 0) + 1
+        char_count[t[i]] = char_count.get(t[i], 0) - 1
 
-    for char in t:
-        if char not in char_count or char_count[char] == 0:
+    for cnt in char_count.values():
+        if cnt != 0:
             return False
-        char_count[char] -= 1
 
     return True
