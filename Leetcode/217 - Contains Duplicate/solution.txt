@@ -1,7 +1,8 @@
 SOLUTION:
 To check whether an array contains any duplicate elements, we use a hash set to keep track of all previously seen numbers.
 
-Key idea: As we iterate through the array, we check if the current number already exists in the set. If yes, a duplicate is found and we return true. If not, we add it to the set and continue.
+Key idea: As we iterate through the array, we check if the current number already exists in the set.
+If yes, a duplicate is found and we return true. If not, we add it to the set and continue.
 
 1) Initialize:
    - Create an empty set to store the unique elements seen so far.
