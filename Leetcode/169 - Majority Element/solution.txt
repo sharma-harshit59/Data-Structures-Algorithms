@@ -1,0 +1,13 @@
+SOLUTION:
+We are given an array `nums` and need to find the majority element — the one that appears more than ⌊n / 2⌋ times.
+The problem guarantees that such an element exists, and asks for an O(n) time, O(1) space solution.
+
+We can use the **Boyer–Moore Voting Algorithm**:
+1) Initialize `count = 0` and `candidate` to any value.
+2) Iterate through each number in the array:
+    - If `count == 0`, set `candidate` to the current number.
+    - If current number equals `candidate`, increment `count`, else decrement `count`.
+3) Return `candidate` at the end — since the problem guarantees a majority element, no second verification is needed.
+
+Time Complexity: O(n) — Single pass over the array.
+Space Complexity: O(1) — Uses only two variables regardless of input size.
