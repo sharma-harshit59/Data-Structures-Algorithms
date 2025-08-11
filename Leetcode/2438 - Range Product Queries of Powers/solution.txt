@@ -1,0 +1,16 @@
+SOLUTION:
+We are given an integer n and need to form the array `powers` consisting of the powers of two that sum to n (based on n's binary representation).  
+For each query [left, right], we must return the product of powers[left] through powers[right] modulo 10^9 + 7.
+
+Approach:
+1) Generate the `powers` array by iterating through powers of two from 1 up to n, adding those present in n's binary representation.
+2) For each query:
+    - Initialize product = 1.
+    - Multiply product by each powers[i] from left to right, taking modulo at each step.
+    - Append the product to the answers list.
+3) Return the answers list.
+
+This method is straightforward and efficient because the number of powers is at most 30 (since n ≤ 10^9), so even direct multiplication per query is fast.
+
+TIME-COMPLEXITY: O(q * m) — q queries, m ≤ 30 powers in worst case  
+SPACE-COMPLEXITY: O(m + q) — storing powers and results
