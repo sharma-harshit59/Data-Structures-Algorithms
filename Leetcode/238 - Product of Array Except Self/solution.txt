@@ -1,0 +1,31 @@
+SOLUTION:
+To return an array where each element is the product of all elements in `nums` except itself, we can use prefix and suffix multiplication without division.
+
+Key idea:
+Instead of recomputing products for each position (O(n²)), we store the cumulative prefix product (product of all elements to the left) and suffix product (product of all elements to the right) and multiply them for each index.
+We can optimize space by computing both in one traversal.
+
+Steps:
+
+1) Initialize result array:
+   - Create `res` of size `nums.length` with all `1`s. This will store the final results.
+
+2) Set up variables:
+   - `prefix = 1` → will hold running product from left to right.
+   - `suffix = 1` → will hold running product from right to left.
+
+3) Single pass calculation:
+   - Use two indices in the same loop:
+       - From left: update `prefix` with the previous element’s value.
+       - From right: update `suffix` with the next element’s value.
+   - Multiply `prefix` into `res[i]` and `suffix` into `res[j]` in each iteration.
+
+4) Return result array.
+
+Why this works:
+- Each `res[i]` becomes:
+  `res[i] = (product of all nums before i) × (product of all nums after i)`
+- This avoids division, handles zeros correctly, and keeps space usage constant.
+
+TIME-COMPLEXITY: O(n) — single traversal through the array.
+SPACE-COMPLEXITY: O(1) extra — excluding the output array.
