@@ -4,16 +4,15 @@ function sortColors(nums: number[]): void {
     let high: number = nums.length - 1;
 
     while (mid <= high) {
-        const value: number = nums[mid];
-        if (value === 0) {
+        if (nums[mid] === 0) {
             [nums[low], nums[mid]] = [nums[mid], nums[low]];
             low++;
             mid++;
-        } else if (value === 1) {
-            mid++;
-        } else {
+        } else if (nums[mid] === 2) {
             [nums[mid], nums[high]] = [nums[high], nums[mid]];
             high--;
+        } else {
+            mid++;
         }
     }
 };

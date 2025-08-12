@@ -1,45 +1,44 @@
 SOLUTION:
-This problem is a variation of the Dutch National Flag algorithm, which is designed to sort an array containing three distinct elements (like 0, 1, and 2) in a single pass using constant space.
-The idea is to maintain three regions in the array:
-    Left region for 0s (red),
-    Middle region for 1s (white),
-    Right region for 2s (blue).
-This is done using three pointers.
+This problem is a classic case of the Dutch National Flag algorithm, which efficiently sorts an array containing exactly three distinct elements (0, 1, and 2) in one pass using constant extra space.
+The strategy is to divide the array into three sections:
+    Left section for 0s (red),
+    Middle section for 1s (white),
+    Right section for 2s (blue).
+We achieve this separation with three pointers.
 
 1)  Initialize Three Pointers
-    You define:
-        low – the boundary for placing 0s.
-        mid – the current element under examination.
-        high – the boundary for placing 2s.
+    Define:
+        low  – index for the next position to place 0.
+        mid  – current index being examined.
+        high – index for the next position to place 2.
     Initially:
         low = 0
         mid = 0
         high = length of array - 1
 
-2)  Single-Pass Loop to Sort
-    As long as mid is less than or equal to high, do the following:
-        Examine the element at index mid.
-        Based on the value (0, 1, or 2), take one of three actions:
-            a)  If element is 0:
-                    Swap it with the element at low.
-                    Increment both low and mid.
-                This places 0 in the correct left region.
-            b)  If element is 1:
-                    It's already in the correct middle region.
-                Just increment mid.
-            c)  If element is 2:
-                    Swap it with the element at high.
-                    Decrement high.
-                    Don't increment mid because the swapped-in element at mid needs to be re-evaluated.
-    This ensures all 0s are pushed to the front, all 2s are pushed to the back, and 1s remain in the middle.
+2)  Single-Pass Partitioning
+    While mid <= high:
+        Examine nums[mid] and take one of three actions:
+            a) If nums[mid] == 0:
+                   Swap nums[low] and nums[mid]
+                   Increment low and mid
+               This places a 0 in its correct left position.
+            b) If nums[mid] == 1:
+                   It is already in the correct middle region
+                   Increment mid
+            c) If nums[mid] == 2:
+                   Swap nums[mid] and nums[high]
+                   Decrement high
+                   Do not increment mid because the swapped element needs checking
+    This process ensures all 0s are moved to the left, all 2s to the right, and 1s remain in the middle.
 
 3)  Why This Works
-    This algorithm processes each element at most once, and maintains:
+    The loop maintains these invariants at all times:
         All elements before low are 0.
         All elements between low and mid are 1.
         All elements after high are 2.
-        The region between mid and high is still to be processed.
-        As a result, after the loop completes, the array is sorted in-place.
+        Elements between mid and high are yet to be processed.
+    By preserving these invariants, we guarantee correct in-place sorting in one pass.
 
-TIME-COMPLEXITY: O(n) - Each element is looked at once, and possibly swapped at most once.
-SPACE-COMPLEXITY: O(1) - Only three pointers are used for in-place sorting.
+TIME-COMPLEXITY: O(n) – Each element is visited at most once.
+SPACE-COMPLEXITY: O(1) – Only constant extra variables are used.
