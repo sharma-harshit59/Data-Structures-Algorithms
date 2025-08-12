@@ -1,38 +1,35 @@
 def isValidSudoku(self, board: List[List[str]]) -> bool:
-    num_set: set[str] = set()
-
-    # Check all rows
     for i in range(9):
-        num_set.clear()
+        visited = [False] * 9
         for j in range(9):
-            val = board[i][j]
-            if val != ".":
-                if val in num_set:
-                    return False
-                num_set.add(val)
+            if board[i][j] == '.':
+                continue
+            num = ord(board[i][j]) - ord('1')
+            if visited[num]:
+                return False
+            visited[num] = True
 
-    # Check all columns
     for j in range(9):
-        num_set.clear()
+        visited = [False] * 9
         for i in range(9):
-            val = board[i][j]
-            if val != ".":
-                if val in num_set:
-                    return False
-                num_set.add(val)
+            if board[i][j] == '.':
+                continue
+            num = ord(board[i][j]) - ord('1')
+            if visited[num]:
+                return False
+            visited[num] = True
 
-    # Check all 3×3 boxes
     for k in range(9):
-        curr_row = (3 * k) % 9
-        curr_col = (k // 3) * 3
-        num_set.clear()
-
-        for i in range(curr_row, curr_row + 3):
-            for j in range(curr_col, curr_col + 3):
-                val = board[i][j]
-                if val != ".":
-                    if val in num_set:
-                        return False
-                    num_set.add(val)
+        visited = [False] * 9
+        currRow = (k // 3) * 3
+        currCol = (k % 3) * 3
+        for i in range(currRow, currRow + 3):
+            for j in range(currCol, currCol + 3):
+                if board[i][j] == '.':
+                    continue
+                num = ord(board[i][j]) - ord('1')
+                if visited[num]:
+                    return False
+                visited[num] = True
 
     return True

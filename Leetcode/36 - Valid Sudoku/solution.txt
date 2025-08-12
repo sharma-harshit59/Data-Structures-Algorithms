@@ -7,20 +7,20 @@ SOLUTION:
 Approach:
 We iterate through the board three times:
 1) For each row:
-    - Use a Set to track seen digits
+    - Use a boolean array of size 9 to track seen digits
     - If a duplicate is found, return False
 
 2) For each column:
-    - Use a Set to track seen digits
+    - Use a boolean array of size 9 to track seen digits
     - If a duplicate is found, return False
 
 3) For each 3×3 box:
     - Identify the starting row and column using k:
-        row = (3 * k) % 9
-        col = Math.floor(k / 3) * 3
+        row = Math.floor(k / 3) * 3
+        col = (k % 3) * 3
     - Check all 9 cells in the 3×3 sub-box for duplicates
 
 If all checks pass, return True.
 
 TIME-COMPLEXITY: O(1) — Board is fixed 9×9  
-SPACE-COMPLEXITY: O(1) — Sets store at most 9 values each pass
+SPACE-COMPLEXITY: O(1) — Boolean array size is fixed at 9
