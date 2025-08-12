@@ -1,0 +1,22 @@
+SOLUTION:
+We are tasked with finding the k most frequent elements in an integer array.
+The solution must run faster than O(n log n), so sorting by frequency is not ideal.
+
+Approach — Optimized Sparse Bucket:
+1) Count Frequencies
+   - Use a hash map `numsCount` to store each number’s frequency.
+
+2) Group Numbers by Frequency
+   - Use another hash map `bucket` where the key is the frequency and the value is a list of numbers.
+   - Track `maxFreq` during this step to know where to start our frequency scan.
+
+3) Collect Top K Elements
+   - Iterate from `maxFreq` down to 1, pushing numbers into `res` until k elements are collected.
+
+4) Why It’s Efficient
+   - No sorting needed.
+   - Only frequencies that actually occur are stored.
+   - O(n) average time complexity.
+
+TIME-COMPLEXITY: O(n) average — single pass count + bucket build + frequency scan.
+SPACE-COMPLEXITY: O(n) — maps and output storage.
