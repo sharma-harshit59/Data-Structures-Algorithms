@@ -1,0 +1,13 @@
+SOLUTION:
+We need to determine if a given integer `n` is a power of three without using loops or recursion.
+
+Approach:
+1) Identify the largest power of three that fits within a 32-bit signed integer:
+   - 3^19 = 1162261467 is the maximum because 3^20 exceeds INT_MAX.
+2) A number `n` is a power of three if and only if:
+   - `n` is positive, AND
+   - `n` divides 3^19 evenly (i.e., 1162261467 % n == 0).
+3) This works because powers of three are closed under division — any smaller power of three will divide a larger one exactly.
+
+TIME-COMPLEXITY: O(1) — Just a constant-time modulo operation.
+SPACE-COMPLEXITY: O(1) — No additional memory used.
