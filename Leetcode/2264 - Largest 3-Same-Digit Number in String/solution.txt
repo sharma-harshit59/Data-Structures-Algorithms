@@ -1,0 +1,25 @@
+SOLUTION:  
+We need to find the largest substring of length 3 in the given string `num` where all three characters are identical.  
+Such substrings are considered "good integers," and we must return the maximum one as a string.
+
+Key idea:  
+    A good integer has the form "xxx" where all characters are the same.
+    We can check every index `i` starting from 2 (third character) and compare it with the two preceding characters.
+
+1) Initialize:
+   - A string `res` to store the largest good integer found so far (initially empty).
+
+2) Iterate from `i = 2` to `num.length - 1`:
+   - Check if `num[i] == num[i-1]` and `num[i-1] == num[i-2]`:
+       - If true, we have found a good integer.
+       - Create a string `tempStr` by repeating `num[i]` three times.
+       - If `tempStr > res` lexicographically, update `res` to `tempStr`.
+
+3) Continue until the end of the string.
+
+4) Return `res`.
+
+Since all good integers have length 3, lexicographical comparison works the same as numeric comparison for digits.
+
+TIME-COMPLEXITY: O(n) - every character is traversed atmost once
+SPACE-COMPLEXITY: O(1) - only a constant extra space of 3 characters is taken up at any instance.
