@@ -18,5 +18,5 @@ SOLUTION:
 
 4) Return the Result
 
-TIME-COMPLEXITY: O(n)  
-SPACE-COMPLEXITY: O(n)
+TIME-COMPLEXITY: O(n) - all elements are traversed atmost twice and atleast twice
+SPACE-COMPLEXITY: O(n) - set holding all the unique elements, hence in worst case it holds equal to the size of the array when all elements are unique.
