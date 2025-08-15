@@ -1,7 +1,7 @@
-def twoSum(self, nums: List[int], target: int) -> List[int]:
-    visited: dict[int, int] = {}
-    for i in range(len(nums)):
-        complement: int = target - nums[i]
-        if complement in visited:
-            return [visited[complement], i]
-        visited[nums[i]] = i
+def twoSum(nums: List[int], target: int) -> List[int]:
+    nums_idx: dict[int, int] = {}
+    for i, num in enumerate(nums):
+        complement = target - num
+        if complement in nums_idx:
+            return [nums_idx[complement], i]
+        nums_idx[num] = i
