@@ -1,0 +1,18 @@
+SOLUTION:  
+We are given a sorted array `numbers` and a target sum. We need to find two numbers whose sum equals the target, returning their 1-based indices.  
+The key observation is that the array is already sorted, which allows us to use the two-pointer technique to achieve O(n) time and O(1) space.
+
+1) Initialize Two Pointers  
+   - Set `low` to the start of the array (`0`) and `high` to the end (`n - 1`).
+
+2) Iterate Until the Pair is Found  
+   - Compute `sum = numbers[low] + numbers[high]`.
+   - If `sum == target`, we’ve found the pair. Return `[low + 1, high + 1]` (convert to 1-based indices).
+   - If `sum > target`, move the `high` pointer one step left to decrease the sum.
+   - If `sum < target`, move the `low` pointer one step right to increase the sum.
+
+3) Guaranteed Solution  
+   - The problem guarantees exactly one solution, so this loop will always return before pointers cross.
+
+TIME-COMPLEXITY: O(n) — Each pointer moves at most `n` steps.  
+SPACE-COMPLEXITY: O(1) — Uses only a few extra variables.
