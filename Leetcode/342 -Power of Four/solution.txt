@@ -1,0 +1,26 @@
+SOLUTION:  
+We need to determine whether a given integer `n` is a power of four without using loops or recursion.  
+A number is a power of four if it can be written as 4^x for some integer x.
+
+Key idea:  
+    A power of four is also a power of two, but with its single set bit located in an even bit position.  
+    This means:
+        1) It must be greater than 0.
+        2) It must have exactly one set bit in binary form (power of two check).
+        3) That set bit must be in an even position (0, 2, 4, ...).
+
+1) Check positivity:  
+   - If n <= 0, return false immediately.
+
+2) Check power of two:  
+   - Use `(n & (n - 1)) == 0` to confirm only one bit is set.
+   - This ensures numbers like 8 (1000) or 16 (10000) pass if they have one bit.
+
+3) Check even bit position:  
+   - Use mask `0x55555555` (binary pattern 01010101...) to allow only bits in even positions.  
+   - `(n & 0x55555555) != 0` ensures the single set bit is at an even position.
+
+4) If all checks pass, return true; otherwise, return false.
+
+TIME-COMPLEXITY: O(1)  
+SPACE-COMPLEXITY: O(1)
