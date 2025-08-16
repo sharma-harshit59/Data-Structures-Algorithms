@@ -1,0 +1,23 @@
+SOLUTION:  
+We are given a positive integer `num` consisting only of digits `6` and `9`.  
+We are allowed to change at most one digit (6 → 9 or 9 → 6) and want to maximize the result.  
+The best strategy is to flip the leftmost `6` into a `9`, since digits further to the left contribute more to the value of the number.
+
+1) Traverse Digits from Right to Left  
+   - Use division and modulo operations to extract digits.  
+   - Keep track of the place value (1 for units, 10 for tens, etc.).  
+   - Whenever we see a `6`, record its place value in a variable `mul`.  
+   - Because we overwrite `mul` every time, at the end it will store the leftmost `6`’s place value.
+
+2) Modify the Number  
+   - If a `6` was found, add `3 * mul` to the original number.  
+     (Because turning `6 → 9` increases the digit by 3 at that place value.)  
+   - If no `6` exists, return the original number unchanged.
+
+3) Why This Guarantees the Maximum  
+   - Flipping the most significant `6` ensures the largest possible increase.  
+   - Flipping any later `6` would yield a smaller increase.  
+   - If there are no `6`s, the number is already maximal.
+
+TIME-COMPLEXITY: O(d), where `d` is the number of digits (≤ 4 here, effectively O(1)).  
+SPACE-COMPLEXITY: O(1), since we only use a few integer variables.
