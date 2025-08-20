@@ -1,0 +1,32 @@
+SOLUTION:  
+The problem asks us to count the number of contiguous subarrays that are filled entirely with zeros.  
+
+Key Idea:  
+Every contiguous block of zeros contributes a certain number of subarrays.  
+- If a block has length `k`, then it contributes:  
+  (k * (k + 1)) / 2  
+  subarrays (all possible subarray lengths from 1 to k).  
+
+For example:  
+- A block [0, 0, 0] contributes 3 + 2 + 1 = 6 subarrays.  
+
+Step-by-Step Approach:  
+1) Initialize counters:  
+   - `totCount` to store the total number of zero-filled subarrays.  
+   - `count` to track the length of the current block of consecutive zeros.  
+
+2) Iterate through the array:  
+   - If the current element is 0, increment `count`.  
+   - If the current element is non-zero, that means the zero block ended.  
+     - Add the contribution of the block to `totCount` using the formula (count * (count + 1)) / 2.  
+     - Reset `count = 0`.  
+
+3) Final addition:  
+   After the loop ends, there may still be a trailing block of zeros.  
+   Add its contribution to `totCount`.  
+
+4) Return the result:  
+   Return `totCount` as the total number of zero-filled subarrays.  
+
+TIME-COMPLEXITY: O(n) — We scan the array once. Each element is processed in constant time.
+SPACE-COMPLEXITY: O(1) — Only a few counters are used, no extra data structures.
