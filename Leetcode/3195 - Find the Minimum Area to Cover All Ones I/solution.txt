@@ -1,0 +1,28 @@
+SOLUTION:  
+We need to find the smallest axis-aligned rectangle that encloses all the `1`s in the grid.  
+The key idea is to track the minimum and maximum row and column indices where `1`s appear.
+
+1) Initialize Boundaries  
+   - `fr` = first row index (minimum row containing a `1`)  
+   - `lr` = last row index (maximum row containing a `1`)  
+   - `fc` = first column index (minimum column containing a `1`)  
+   - `lc` = last column index (maximum column containing a `1`)  
+   - Initially, set `fr = m - 1`, `lr = 0`, `fc = n - 1`, `lc = 0`.
+
+2) Traverse the Grid  
+   - For each cell `(i, j)`:
+     - If `grid[i][j] == 1`:
+       - Update `fr = min(fr, i)`
+       - Update `lr = max(lr, i)`
+       - Update `fc = min(fc, j)`
+       - Update `lc = max(lc, j)`
+
+3) Compute Rectangle Area  
+   - Height = `lr - fr + 1`  
+   - Width = `lc - fc + 1`  
+   - Area = `height * width`
+
+This ensures the rectangle includes all `1`s and is the smallest such rectangle.
+
+TIME-COMPLEXITY: O(m * n) — Each cell is checked once.  
+SPACE-COMPLEXITY: O(1) — Only four integers are used for boundaries.
