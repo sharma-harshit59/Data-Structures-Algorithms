@@ -1,0 +1,24 @@
+SOLUTION:
+We are asked to sort the diagonals of an n x n matrix such that:
+- All diagonals in the bottom-left triangle (including the main diagonal) are in non-increasing order.
+- All diagonals in the top-right triangle are in non-decreasing order.
+
+Recall:
+- A diagonal is defined by cells (i, j) where i - j is constant.
+- Bottom-left diagonals (i >= j) should be sorted in descending order.
+- Top-right diagonals (j > i) should be sorted in ascending order.
+
+Approach:
+1) Iterate over all diagonals starting from:
+    - First row (excluding column 0) → these are top-right diagonals.
+    - First column (including row 0) → these are bottom-left diagonals.
+2) For each diagonal:
+    - Collect all its elements into a list.
+    - Sort the list:
+        - ascending if it belongs to the top-right triangle,
+        - descending if it belongs to the bottom-left triangle.
+    - Place the sorted elements back along the same diagonal.
+3) Return the modified grid.
+
+TIME-COMPLEXITY: O(n² log n) - Each of the 2n−1 diagonals has at most n elements. Sorting dominates with O(n log n) per diagonal → O(n² log n) overall.  
+SPACE-COMPLEXITY: O(n) - Extra space for temporary storage of a single diagonal.  
