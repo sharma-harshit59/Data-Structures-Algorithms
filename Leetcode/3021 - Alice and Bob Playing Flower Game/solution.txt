@@ -1,0 +1,22 @@
+SOLUTION:
+We are given two integers n and m representing the maximum number of flowers in two lanes.  
+Alice and Bob play a game where Alice wins if the total number of flowers (x + y) is odd.  
+We need to count the number of pairs (x, y) such that:
+    1 ≤ x ≤ n  
+    1 ≤ y ≤ m  
+    and (x + y) is odd.
+
+Approach:
+1) Count how many even and odd numbers are in the range [1, n]:
+    - nEven = n // 2  
+    - nOdd = (n + 1) // 2  
+2) Do the same for [1, m]:
+    - mEven = m // 2  
+    - mOdd = (m + 1) // 2  
+3) Alice wins if x + y is odd. That happens in two cases:
+    - x is even, y is odd → nEven * mOdd  
+    - x is odd, y is even → nOdd * mEven  
+4) Add both counts to get the total number of valid pairs.
+
+TIME-COMPLEXITY: O(1) — constant-time arithmetic  
+SPACE-COMPLEXITY: O(1) — only a few variables
