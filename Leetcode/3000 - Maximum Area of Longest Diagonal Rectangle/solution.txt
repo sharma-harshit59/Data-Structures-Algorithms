@@ -1,0 +1,17 @@
+SOLUTION:
+We are given an array `dimensions`, where each element [len, wid] represents the length and width of a rectangle.  
+We must return the area of the rectangle with the longest diagonal. If multiple rectangles share the same diagonal length, we pick the one with the maximum area.
+
+Approach:
+1) Initialize `resDiag = -1` and `resArea = -1` to track the best diagonal (squared) and corresponding area.
+2) For each rectangle [len, wid]:
+    - Compute diagonal squared as `currDiag = len * len + wid * wid` (avoiding sqrt to stay efficient).
+    - Compute area as `currArea = len * wid`.
+    - If `currDiag > resDiag`, update both `resDiag` and `resArea`.
+    - If `currDiag == resDiag` and `currArea > resArea`, update `resArea`.
+3) After iterating through all rectangles, return `resArea`.
+
+This works because comparing squared diagonals avoids floating-point errors and is sufficient to determine which diagonal is longer.
+
+TIME-COMPLEXITY: O(n) — we scan each rectangle once  
+SPACE-COMPLEXITY: O(1) — only a few variables are used
