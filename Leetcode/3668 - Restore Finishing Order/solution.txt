@@ -1,0 +1,17 @@
+SOLUTION:
+We are given two arrays:  
+- `order` → finishing order of all participants (permutation of 1..n)  
+- `friends` → strictly increasing list of friend IDs (subset of order)  
+
+We must return the finishing order of only the friends.
+
+Approach:
+1) Convert `friends` into a fast lookup set (`friendIds`).
+2) Iterate through `order`:
+   - If the current ID is in `friendIds`, append it to the result.
+3) Return the result.
+
+This guarantees correctness because we scan `order` exactly once, preserving finishing order naturally.
+
+TIME-COMPLEXITY: O(n) — one pass over `order` (n ≤ 100)  
+SPACE-COMPLEXITY: O(f) — storing friend IDs in a set (f ≤ 8)
