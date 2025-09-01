@@ -1,0 +1,28 @@
+SOLUTION:
+To maximize the average pass ratio after assigning `extraStudents`, we use a **greedy approach** with a **priority queue (max-heap)**.
+
+Key idea: At each step, assign an extra student to the class where it gives the **largest increase (gain)** in pass ratio.
+
+1) Define the gain function:
+   For a class `(pass, total)`, the increase in pass ratio by adding one more passing student is:
+   gain = (pass+1)/(total+1) - pass/total
+
+2) Initialize a max-heap:
+   - Push all classes into a priority queue, where the comparison is based on gain.
+   - The class with the highest gain stays at the top.
+
+3) Distribute extra students:
+   - While extraStudents > 0:
+       - Pop the class with the highest gain.
+       - Add one student (pass+1, total+1).
+       - Push it back with its new gain.
+       - Decrease extraStudents.
+
+4) Compute final result:
+   - After distributing all students, compute the sum of (pass/total) for all classes.
+   - Divide by the number of classes to get the maximum average pass ratio.
+
+This greedy approach is correct because each step takes the locally optimal choice (the class that benefits the most from one student), and repeating it ensures global maximization.
+
+TIME-COMPLEXITY: O((n + extraStudents) log n)  
+SPACE-COMPLEXITY: O(n)
