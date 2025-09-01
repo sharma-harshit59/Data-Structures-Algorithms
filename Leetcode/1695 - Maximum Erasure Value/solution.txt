@@ -20,5 +20,5 @@ Key idea: Maintain a window [low, high] such that all elements inside are unique
 
 This approach ensures each element is added and removed at most once from the set, resulting in a linear time solution.
 
-TIME-COMPLEXITY: O(n) - Eaach element is looked up once by high and at most once by low
+TIME-COMPLEXITY: O(n) - Each element is looked up once by high and at most once by low
 SPACE-COMPLEXITY: O(n) - In the worst case, all elements in the array are unique
