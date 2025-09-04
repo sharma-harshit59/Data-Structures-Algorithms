@@ -1,0 +1,16 @@
+SOLUTION:
+We are asked to determine which of two people (at positions x and y) will reach a third person (at position z) first on a number line, assuming equal speed.
+
+Approach:
+1) Compute the absolute distances:
+   - `distX = |z - x|`
+   - `distY = |z - y|`
+2) Compare distances:
+   - If `distX < distY`, return 1 (Person 1 is closer).
+   - If `distX > distY`, return 2 (Person 2 is closer).
+   - Otherwise, return 0 (they arrive at the same time).
+
+This method is optimal since we only need constant-time distance calculations and comparisons.
+
+TIME-COMPLEXITY: O(1)  
+SPACE-COMPLEXITY: O(1)
