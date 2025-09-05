@@ -1,0 +1,31 @@
+SOLUTION:
+We are given an m x n grid where:
+    - 0 = empty cell,
+    - 1 = fresh orange,
+    - 2 = rotten orange.
+
+Every minute, a rotten orange makes its 4-directionally adjacent fresh oranges rotten.  
+We need the minimum minutes required for all oranges to rot, or -1 if impossible.
+
+1. Initialize:
+   - `rotten` queue storing tuples (i, j, time) for all initially rotten oranges.
+   - `freshCells` counter for the number of fresh oranges.
+
+2. Perform BFS:
+   - Process each cell in the `rotten` queue.
+   - For each rotten orange at (i, j, t):
+     - Check its 4 neighbors using direction vectors [(1,0), (-1,0), (0,1), (0,-1)].
+     - If a neighbor (ni, nj) is in bounds and is fresh (grid[ni][nj] == 1):
+       - Mark it rotten (grid[ni][nj] = 2).
+       - Push (ni, nj, t + 1) into the queue.
+       - Decrement `freshCells`.
+
+3. Track time:
+   - Update `timeLapsed` with the maximum time `t` encountered during BFS.
+
+4. Result:
+   - If `freshCells` > 0 (some oranges never rotted), return -1.
+   - Otherwise, return `timeLapsed`.
+
+TIME-COMPLEXITY: O(m × n) - Each cell is processed at most once.  
+SPACE-COMPLEXITY: O(m × n) - For the BFS queue in the worst case (all cells rotten one after another).
