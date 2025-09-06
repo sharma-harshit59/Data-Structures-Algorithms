@@ -1,0 +1,19 @@
+SOLUTION:
+To find the missing number in an array of distinct integers from the range [0, n], we use the XOR trick.
+
+Key idea:
+XOR cancels out identical numbers (a ^ a = 0), and a ^ 0 = a.
+If we XOR all indices (1..n) with all values in nums, everything cancels except the missing number.
+
+1) Initialize a result variable res = 0.
+
+2) Traverse the array:
+   - For each index i, XOR res with nums[i] and (i+1).
+   - This ensures every number from 0..n and every array element is included.
+
+3) After the loop, res will hold the missing number.
+
+This works because all pairs cancel out except the one number missing in nums.
+
+TIME-COMPLEXITY: O(n) – We traverse the array once.
+SPACE-COMPLEXITY: O(1) – Only one variable is used regardless of input size.
