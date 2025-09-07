@@ -1,0 +1,19 @@
+SOLUTION:
+We want to find the digit that occurs least frequently in the decimal representation of n.
+If multiple digits tie, we pick the smallest digit.
+
+Key idea:
+- Count frequency of each digit (0–9).
+- Ignore digits that do not appear.
+- Among digits with nonzero frequency, choose the one with smallest count, breaking ties by digit value.
+
+Steps:
+1) Initialize an array digFreq[10] = 0.
+2) Extract digits of n and update digFreq[digit].
+3) Scan digits 0–9:
+   - Skip if digFreq[digit] == 0.
+   - Track digit with minimum frequency (break ties by smaller digit).
+4) Return that digit.
+
+TIME-COMPLEXITY: O(d), where d = number of digits in n (≤ 10 for 32-bit int).
+SPACE-COMPLEXITY: O(1)
