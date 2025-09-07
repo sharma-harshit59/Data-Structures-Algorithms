@@ -1,0 +1,20 @@
+SOLUTION:
+To generate an array of n unique integers that sum to zero, we leverage symmetry.
+
+Key idea:
+Numbers can be paired as (i, -i). Each pair adds up to zero. If n is even, we just return these pairs.  
+If n is odd, we add a single 0 in addition to the pairs.
+
+1) Initialize an empty result array.
+
+2) For each integer i from 1 to n/2:
+   - Add i to the result.
+   - Add -i to the result.
+   This ensures pairs balance to zero.
+
+3) If n is odd, also add 0 to the result.
+
+This guarantees exactly n unique numbers whose sum is zero.
+
+TIME-COMPLEXITY: O(n) – We generate n numbers.  
+SPACE-COMPLEXITY: O(n) – For the result array.
