@@ -1,0 +1,20 @@
+SOLUTION:
+We need to make all elements of the array equal using the operation:
+- Choose any subarray and replace its elements with the bitwise AND of that subarray.
+
+Key idea:
+The entire array is itself a valid subarray.  
+So, in at most one operation, we can make all elements equal by taking the AND of all numbers in the array.
+
+1) If all elements are already equal:
+   - No operation is needed. Return 0.
+
+2) Otherwise:
+   - Choose the whole array as the subarray.
+   - Replace all elements with the AND of the array.
+   - This makes all elements equal in one operation. Return 1.
+
+Therefore, the answer is always 0 (if uniform) or 1 (if not).
+
+TIME-COMPLEXITY: O(n) – We only check if all elements are equal.  
+SPACE-COMPLEXITY: O(1) – Only a few variables are used.
