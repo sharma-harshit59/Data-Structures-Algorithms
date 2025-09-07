@@ -1,0 +1,21 @@
+SOLUTION:
+We want to transform the string into all 'a' characters using the fewest operations.
+Each operation picks a character c and replaces all its occurrences with the next letter in the alphabet (circular, so 'z' → 'a').
+
+Key idea:
+- Every character moves forward through the alphabet until it becomes 'a'.
+- The number of steps for a character ch is the "circular distance" from ch to 'a':
+  distance(ch) = (26 - (ch - 'a')) % 26
+  - Example: distance('a') = 0, distance('b') = 25, distance('z') = 1.
+- Since all operations affect all occurrences of a chosen letter at once, the limiting factor is the character that is farthest from 'a'.
+- Thus, the answer = maximum distance across all characters.
+
+Steps:
+1) Initialize maxDist = 0.
+2) For each character ch in s:
+   - Compute distance = (26 - (ch - 'a')) % 26.
+   - Update maxDist = max(maxDist, distance).
+3) Return maxDist.
+
+TIME-COMPLEXITY: O(n) – We scan the string once.
+SPACE-COMPLEXITY: O(1) – Only a few variables are used.
