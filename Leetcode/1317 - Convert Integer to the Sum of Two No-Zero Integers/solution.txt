@@ -1,0 +1,24 @@
+SOLUTION:
+To split n into two No-Zero integers, we check numbers systematically.
+
+Key idea:
+We need two numbers (a, b) such that:
+- a + b = n
+- neither a nor b contains a digit '0'.
+
+1) Define a helper function `isNoZero(num)`:
+   - While num > 0, check the last digit.
+   - If any digit is 0, return false.
+   - Otherwise, continue until num = 0.
+   - If no zero digits are found, return true.
+
+2) Iterate i from 1 to n/2:
+   - Let j = n - i.
+   - If both i and j are No-Zero integers:
+       → Return [i, j].
+
+3) Since problem guarantees a solution exists, we will always find and return a pair.
+
+TIME-COMPLEXITY: O(n log n) – In the worst case, we check up to n/2 numbers, and each check takes O(log n) digits.
+
+SPACE-COMPLEXITY: O(1) – We only use constant extra space.
