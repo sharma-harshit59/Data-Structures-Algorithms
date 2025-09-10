@@ -1,0 +1,36 @@
+SOLUTION:  
+This problem asks us to determine if a given binary tree is a valid Binary Search Tree (BST).  
+
+A valid BST satisfies the following conditions:  
+1. Every node’s left subtree contains only nodes with values strictly less than the node’s value.  
+2. Every node’s right subtree contains only nodes with values strictly greater than the node’s value.  
+3. Both left and right subtrees must themselves be valid BSTs.  
+
+To solve this, we use a recursive range-checking approach where each node’s value must lie strictly between an allowed `min` and `max` boundary, derived from its ancestors.
+
+
+1) Define the Recursive Rule
+At any node:
+- Its value must be greater than all values in the left ancestor path (tracked by a `min` bound).  
+- Its value must be less than all values in the right ancestor path (tracked by a `max` bound).  
+
+If a node violates this rule, the tree is not a BST.
+
+2) Recursive Validation
+We implement a helper function `validate(node, minNode, maxNode)`:
+- Base case: If `node` is `null`, return `true` (empty tree is valid).  
+- Check current node: If `node.val <= minNode.val` or `node.val >= maxNode.val`, return `false`.  
+- Recurse left: Pass updated `maxNode = node`.  
+- Recurse right: Pass updated `minNode = node`.  
+
+This ensures each subtree respects both local and inherited constraints.
+
+3) Initial Call
+At the root:
+- There are no constraints initially, so we call `validate(root, null, null)`.  
+- As recursion unfolds, each node passes itself as a bound to its children.
+
+
+### TIME-COMPLEXITY: O(n), where `n` is the number of nodes.
+
+### SPACE-COMPLEXITY: O(h), where `h` is the tree height (recursion stack). 
