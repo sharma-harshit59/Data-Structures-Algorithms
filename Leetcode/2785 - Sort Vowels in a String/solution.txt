@@ -1,0 +1,32 @@
+SOLUTION:
+We need to transform a given string `s` such that:
+    - All consonants remain in their original positions
+    - All vowels are sorted in non-decreasing ASCII order while being placed back in the string
+
+The vowels are defined as: 'a', 'e', 'i', 'o', 'u' (both lowercase and uppercase).
+Consonants include all other English letters.
+
+This problem is essentially about:
+  - Identifying vowels
+  - Sorting them
+  - Replacing them back while keeping consonants untouched
+
+1)  Collect Vowels
+    - Traverse the string once
+    - For each character, check if it is a vowel
+    - Store all vowels in a list
+
+2)  Sort Vowels
+    - Sort the collected vowel list using ASCII order
+    - This ensures uppercase vowels (like 'A') come before lowercase ones (like 'a')
+
+3)  Reconstruct String
+    - Traverse the string again
+    - If the current character is a consonant → keep it as is
+    - If the current character is a vowel → replace it with the next vowel from the sorted list
+
+4)  Return Result
+    - Join the characters to form the final string
+
+TIME-COMPLEXITY: O(n + m log m), which is optimal for n ≤ 10^5
+SPACE-COMPLEXITY: O(m) - Extra space only for storing vowels and No additional structures beyond what is necessary
