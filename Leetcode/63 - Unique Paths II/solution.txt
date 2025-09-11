@@ -1,0 +1,21 @@
+SOLUTION:
+We use dynamic programming (DP) to count unique paths while avoiding obstacles.  
+The robot can only move right or down, so the number of ways to reach a cell is the sum of:
+  - Ways to reach from the top cell
+  - Ways to reach from the left cell
+
+Steps:
+  1. If the start (0,0) has an obstacle → return 0 immediately.
+  2. Initialize the first column:
+       - If a cell has no obstacle and the cell above has paths, set it to 1.
+       - Otherwise, set it to 0.
+  3. Initialize the first row similarly using left neighbors.
+  4. For each cell (i,j):
+       - If it has an obstacle, set it to 0.
+       - Otherwise, set it to sum of top cell and left cell.
+  5. The answer is stored in the bottom-right cell.
+
+We reuse the given grid itself to save space.
+
+TIME-COMPLEXITY: O(m × n) — Each cell is processed once  
+SPACE-COMPLEXITY: O(1) extra — In-place DP on the input grid
