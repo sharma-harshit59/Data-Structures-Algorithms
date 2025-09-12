@@ -1,0 +1,25 @@
+SOLUTION:
+We want to determine whether Alice wins the game where she removes substrings with an odd number of vowels and Bob removes substrings with an even number of vowels.
+
+Key idea:
+- The entire game depends only on whether the string contains at least one vowel.
+- Why? Because:
+  1) If there are zero vowels, Alice cannot make a valid first move (since she needs an odd number of vowels). She loses immediately.
+  2) If there is at least one vowel, Alice can always win. She simply removes a substring consisting of exactly one vowel (odd count = 1). After that, Bob is forced to play on the remaining string.
+
+Critical reasoning about even-vowel scenarios:
+    Suppose the total number of vowels in the string is even. At Alice’s first move, she removes a substring with an odd number of vowels (say 1 vowel).  
+    Now the remaining string has an odd number of vowels. Bob must remove a substring with an even number of vowels.
+    But taking an even number from an odd total still leaves an odd number. This means after every Bob move, the number of vowels left in the string is still odd.
+    When it comes back to Alice, she always has at least one vowel available to take (odd count guarantees existence of a vowel).
+    Eventually, Bob faces an empty string on his turn and loses.
+
+So regardless of whether the initial count of vowels is odd or even, as long as it is > 0, Alice wins.
+
+Steps:
+1) Scan the string.
+2) If no vowel is found → return false (Alice loses).
+3) Otherwise → return true (Alice wins).
+
+TIME-COMPLEXITY: O(n) – We scan the string once.
+SPACE-COMPLEXITY: O(1) – Only a few variables are used.
