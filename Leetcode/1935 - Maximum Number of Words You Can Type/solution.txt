@@ -1,0 +1,25 @@
+SOLUTION:
+To count the number of words that can be fully typed without using broken keys, we check each word in the input string against the set of broken letters.
+
+Key idea: Track whether a word uses any broken key. If not, count it as valid.
+
+1) Initialize:
+   - Create a boolean array `brokenKeys` of size 26 to mark broken letters for O(1) lookups.
+   - Set `count = 0` to track the number of valid words.
+   - Use a flag `brokenKeyUsed = false` to mark if the current word contains a broken letter.
+
+2) Traverse the string `text` character by character:
+   - If the character is a space `' '`, the current word has ended:
+       - If `brokenKeyUsed` is false, increment `count` (word is valid).
+       - Reset `brokenKeyUsed = false` for the next word.
+   - Otherwise, if the character is in `brokenKeys`, set `brokenKeyUsed = true`.
+
+3) After the loop ends, check the last word:
+   - If `brokenKeyUsed` is false, increment `count`.
+
+4) Return `count`.
+
+This approach efficiently handles each word in one pass while using constant space for the broken key lookup.
+
+TIME-COMPLEXITY: O(n + m) - length of `text` (we scan once) and length of `brokenLetters` (to initialize broken keys). 
+SPACE-COMPLEXITY: O(1) extra - The `brokenKeys` array is fixed at 26 booleans. No extra space grows with input size.
