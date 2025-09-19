@@ -1,0 +1,29 @@
+SOLUTION:
+We are asked to design a Spreadsheet with 26 columns (A–Z) and `rows` rows.  
+Each cell can store an integer, and we must support three operations:
+- `setCell(cell, value)` → set a cell’s value.
+- `resetCell(cell)` → reset a cell to 0.
+- `getValue(formula)` → evaluate a formula of the form "=X+Y", where X and Y are either cell references or integers.
+
+Approach:
+1) Represent the grid as a 2D array `grid[rows][26]`, initialized with zeros.
+2) Provide a helper `getCell(cell)` that converts a reference like "A1" → (row, col) index.
+   - `col = cell[0] - 'A'`
+   - `row = int(cell[1..]) - 1` (since input rows are 1-indexed, but array is 0-indexed).
+3) Provide another helper `getCellValue(s)`:
+   - If `s` starts with a letter → treat it as a cell reference and return its stored value.
+   - Otherwise → parse it directly as an integer.
+4) For `setCell` and `resetCell`, update the corresponding grid entry.
+5) For `getValue(formula)`:
+   - Strip the leading '='.
+   - Split the string on '+' into two parts.
+   - Return `getCellValue(left) + getCellValue(right)`.
+
+TIME-COMPLEXITY:  
+- `setCell`, `resetCell`, `getCellValue`, and `getValue` are all O(1).  
+- Every operation is constant-time because parsing a single cell reference or integer is bounded by input size.  
+
+SPACE-COMPLEXITY:  
+- O(rows × 26) for the grid.  
+- With `rows ≤ 10³`, this is at most ~26k integers → well within limits.  
+- Extra space usage is O(1).
