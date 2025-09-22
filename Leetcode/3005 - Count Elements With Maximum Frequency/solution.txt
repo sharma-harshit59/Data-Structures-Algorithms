@@ -1,0 +1,22 @@
+SOLUTION:
+We are given an array `nums` consisting of positive integers.  
+We must return the total number of elements in the array that have the **maximum frequency**.
+
+Approach:
+1) Initialize `numFreq` as an empty map/dictionary to track the frequency of each element.  
+2) Initialize `maxFreq = 0` to store the maximum frequency found so far.  
+3) Initialize `maxFreqCount = 0` to track the number of distinct elements currently at `maxFreq`.  
+4) Iterate through each element `num` in `nums`:
+    - Increment its frequency in `numFreq`.
+    - Let `f = numFreq[num]`.
+    - If `f > maxFreq`, a new maximum frequency is found:
+        - Update `maxFreq = f`.
+        - Reset `maxFreqCount = 1` to start counting elements at the new max frequency.
+    - Else if `f == maxFreq`, another element has reached the current maximum frequency:
+        - Increment `maxFreqCount += 1`.
+5) The total number of elements with maximum frequency is `maxFreq * maxFreqCount`. Return this value.
+
+This works because `maxFreqCount` tracks how many distinct elements have the maximum frequency, and multiplying it by `maxFreq` gives the total occurrences of those elements.
+
+TIME-COMPLEXITY: O(n) — single pass over the array  
+SPACE-COMPLEXITY: O(n) — storing frequency of each element
