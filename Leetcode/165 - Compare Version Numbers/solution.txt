@@ -1,0 +1,41 @@
+SOLUTION:  
+This problem is about comparing two version numbers represented as strings, where each version consists of revisions separated by dots (`.`).  
+A revision is simply an integer (ignoring leading zeros).  
+If one version has fewer revisions, the missing parts are considered `0`.
+
+The key insight is to:
+- Split both version strings into arrays of integers.
+- Compare corresponding revisions from left to right.
+- If revisions differ, return immediately with the comparison result.
+- If one version runs out of revisions, treat the missing values as `0`.
+- If all revisions match, return `0`.
+
+1) Split and Convert Versions
+    Convert each version string into an array of integers:
+        - `version1.split('.') → [revisions as integers]`
+        - `version2.split('.') → [revisions as integers]`
+
+2) Single-Pass Comparison
+    - Determine the maximum length of the two arrays.
+    - Loop from index `0` to `len - 1`:
+        - Get revision number from each version:
+            v1 = version1[i] (or 0 if out of bounds)
+            v2 = version2[i] (or 0 if out of bounds)
+        - If `v1 < v2`, return -1
+        - If `v1 > v2`, return 1
+
+3) Final Check
+    - If loop finishes with no differences, return `0`.
+
+4) Why This Works
+    - Missing revisions are safely treated as `0`.
+    - Leading zeros vanish when converting to integers.
+    - Direct integer comparison avoids string pitfalls.
+    - Single pass guarantees optimal performance.
+
+    This approach is:
+        - Linear in time relative to the number of revisions
+        - Constant in space beyond the split arrays
+
+TIME-COMPLEXITY: O(n) — where n is the number of revisions (total length of both strings).  
+SPACE-COMPLEXITY: O(n) — arrays created by splitting the strings.
