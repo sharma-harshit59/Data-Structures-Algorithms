@@ -1,6 +1,45 @@
-SOLUTION:
-To check whether an array contains any duplicate elements, we use a hash set to keep track of all previously seen numbers.
+NAIVE SOLUTION:
+To check whether an array contains duplicates, we compare every pair of elements using two nested loops.
+Key idea: For each element, we scan all subsequent elements to see if any of them are equal.
 
+1) Initialize:
+   - No extra data structures needed.
+
+2) Traverse the array:
+   - For each element at index i:
+     - Compare it with every element at index j > i.
+     - If nums[i] == nums[j], return true (duplicate found).
+
+3) If no duplicates are found after all comparisons, return false.
+
+This approach guarantees we check all possible pairs, but it is inefficient for large arrays.
+
+TIME-COMPLEXITY: O(n²) - Each element is compared with every other element.
+SPACE-COMPLEXITY: O(1) - No additional storage is required beyond variables.
+
+---------------------------------------------------------------------------------------------------
+
+BETTER SOLUTION:
+To check for duplicates more efficiently, we first sort the array and then scan for consecutive equal elements.
+Key idea: Sorting places duplicates next to each other, so we only need to compare adjacent elements.
+
+1) Sort the array in non-decreasing order.
+
+2) Traverse the sorted array:
+   - For each element from index 1 to n-1:
+     - If nums[i] == nums[i-1], return true (duplicate found).
+
+3) If the loop completes without finding duplicates, return false.
+
+This approach avoids pairwise comparison but requires sorting.
+
+TIME-COMPLEXITY: O(n log n) - Sorting dominates the runtime.
+SPACE-COMPLEXITY: O(1) or O(log n) depending on sorting algorithm implementation.
+
+---------------------------------------------------------------------------------------------------
+
+BEST SOLUTION:
+To check whether an array contains any duplicate elements, we use a hash set to keep track of all previously seen numbers.
 Key idea: As we iterate through the array, we check if the current number already exists in the set.
 If yes, a duplicate is found and we return true. If not, we add it to the set and continue.
 
