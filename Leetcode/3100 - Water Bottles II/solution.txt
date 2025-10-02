@@ -1,0 +1,27 @@
+SOLUTION:
+    This problem is a variation of the "exchange simulation" type, where we repeatedly consume resources (bottles) and convert the byproduct (empty bottles) into new resources under evolving constraints.
+    The key challenge is that after each exchange, the exchange rate (`numExchange`) increases by 1, preventing multiple exchanges at the same cost.
+    Thus, we must simulate the process step by step.
+
+1)  Track the State Variables
+    - `drank`: total bottles consumed
+    - `numBottles`: currently available full bottles
+    - `empty`: empty bottles obtained after drinking
+    Initialize `drank = 0`, `empty = 0`.
+
+2)  Simulate Drinking and Exchanging
+    While we still have full bottles:
+        - Drink all full bottles: add to `drank` and move them into `empty`.
+        - Set `numBottles` to 0 because all are consumed.
+        - If we have at least `numExchange` empty bottles:
+            * Use exactly `numExchange` empty bottles to get 1 new full bottle.
+            * Reduce `empty` accordingly.
+            * Increase `numExchange` by 1 (future exchanges get harder).
+            * Set `numBottles = 1` (new bottle obtained).
+        - Otherwise, break because no more exchanges are possible.
+
+3)  Return the Total Drank
+    At the end, return the value of `drank`, which represents the maximum bottles that can be consumed under the given constraints.
+
+TIME-COMPLEXITY: O(n) — In the worst case, each loop consumes one bottle and increments `numExchange`. Since both `numBottles` and `numExchange` are bounded by 100, this loop runs at most ~200 times, effectively constant.
+SPACE-COMPLEXITY: O(1) — Only a few integer variables are used to track state.
